@@ -1,0 +1,484 @@
+/* PROJECTS SECTION COMPONENT STYLES - Balanced 2x2 Grid with Interactive Filters & Mac Mockup */
+
+.projects-sec-container {
+  position: relative;
+  width: 100%;
+  padding: 120px 6% 100px;
+  overflow: hidden;
+  color: #f1f5f9;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.projects-sec-container * {
+  box-sizing: border-box;
+}
+
+/* BACKGROUND AMBIENT GLOWS */
+.projects-sec-glow-left {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: -220px;
+  top: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.projects-sec-glow-right {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  right: -220px;
+  bottom: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Inner Wrapper */
+.projects-inner-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.projects-sec-header {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.projects-sec-visible .projects-sec-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-sec-badge {
+  display: inline-block;
+  color: #c084fc;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
+}
+
+.projects-sec-title {
+  margin: 0;
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.projects-sec-desc {
+  max-width: 580px;
+  margin: 16px auto 0;
+  color: #94a3b8;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* FILTER TABS */
+.projects-sec-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.projects-sec-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projects-sec-filter-btn small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  font-weight: 700;
+  color: #c084fc;
+}
+
+.projects-sec-filter-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.projects-sec-filter-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.2));
+  border-color: rgba(168, 85, 247, 0.55);
+  box-shadow: 0 4px 18px rgba(168, 85, 247, 0.25),
+              inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.projects-sec-filter-btn.active small {
+  background: rgba(168, 85, 247, 0.3);
+  color: #ffffff;
+}
+
+/* 2x2 BALANCED BENTO GRID */
+.projects-sec-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 40px;
+}
+
+/* Card Container */
+.projects-sec-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  background: rgba(13, 15, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+  padding: 24px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  opacity: 1;
+}
+
+.projects-sec-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.projects-sec-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55),
+              0 0 25px rgba(168, 85, 247, 0.14);
+}
+
+.projects-sec-card:hover::before {
+  opacity: 1;
+}
+
+/* Watermark Number */
+.projects-sec-watermark {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Card Top Meta */
+.projects-sec-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.projects-sec-category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #c084fc;
+  text-transform: uppercase;
+}
+
+/* PROJECT IMAGE FRAME */
+.projects-sec-mockup-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  background: #090a12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Image Wrap */
+.projects-sec-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.projects-sec-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.projects-sec-card:hover .projects-sec-img-wrap img {
+  transform: scale(1.05);
+}
+
+.projects-sec-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 9, 13, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projects-sec-card:hover .projects-sec-img-overlay {
+  opacity: 1;
+}
+
+.projects-sec-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: #a855f7;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.projects-sec-card:hover .projects-sec-preview-btn {
+  transform: translateY(0);
+}
+
+/* CONTENT BODY */
+.projects-sec-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projects-sec-card-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+.projects-sec-card-desc {
+  margin: 0 0 16px;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Tech Stack Chips */
+.projects-sec-tech-stack {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.projects-sec-tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.projects-sec-tech-tag:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.3);
+  color: #ffffff;
+}
+
+/* Action Buttons */
+.projects-sec-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.projects-sec-btn-primary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+  transition: all 0.25s ease;
+}
+
+.projects-sec-btn-primary:hover {
+  background: linear-gradient(135deg, #a855f7, #9333ea);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+  transform: translateY(-2px);
+}
+
+.projects-sec-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.projects-sec-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* BOTTOM GITHUB CTA */
+.projects-sec-bottom-cta {
+  position: relative;
+  z-index: 2;
+  margin-top: 60px;
+}
+
+.projects-sec-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 36px;
+  border-radius: 20px;
+  background: rgba(13, 15, 26, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.projects-sec-cta-text h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.projects-sec-cta-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.projects-sec-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.projects-sec-cta-btn:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 960px) {
+  .projects-sec-container {
+    padding: 100px 5% 70px;
+  }
+
+  .projects-sec-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projects-sec-cta-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+}

@@ -1,0 +1,546 @@
+/* HOME / HERO COMPONENT STYLES - Polished High-Performance Hero Section */
+
+.home {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 130px 6% 80px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* AMBIENT GLOWS */
+.home-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.glow-top-left {
+  top: 10%;
+  left: 5%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.14) 0%, transparent 70%);
+}
+
+.glow-bottom-right {
+  bottom: 10%;
+  right: 5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+}
+
+/* CONTAINER GRID */
+.home-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* LEFT CONTENT */
+.home-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home.show .home-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Status Badge */
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #86efac;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.badge-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+/* Greeting */
+.home-greeting {
+  color: #c084fc;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+/* Main Name */
+.home-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(48px, 6.5vw, 84px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -2.5px;
+}
+
+.home-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 25%, #c084fc 65%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Typing Role */
+.home-role {
+  margin-top: 18px;
+  color: #94a3b8;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.role-prefix {
+  color: #94a3b8;
+}
+
+.typing-role {
+  color: #ffffff;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 40%, #d8b4fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cursor {
+  color: #a855f7;
+  font-weight: 300;
+  animation: blinkCursor 0.9s infinite;
+  margin-left: 2px;
+  -webkit-text-fill-color: #a855f7;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Description */
+.home-description {
+  max-width: 580px;
+  margin-top: 20px;
+  color: #94a3b8;
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+/* BUTTONS */
+.home-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.primary-btn {
+  color: #ffffff;
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 10px 25px -4px rgba(168, 85, 247, 0.4),
+              0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #b86bfc 0%, #8b5cf6 100%);
+  box-shadow: 0 15px 35px -5px rgba(168, 85, 247, 0.55),
+              0 0 20px rgba(168, 85, 247, 0.35);
+}
+
+.primary-btn .btn-icon {
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.primary-btn:hover .btn-icon {
+  transform: translate(2px, -2px);
+}
+
+.secondary-btn {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Social Pills */
+.home-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.social-pill:hover {
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.2);
+}
+
+/* RIGHT PHOTO & FLOATING BADGES */
+.home-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.home.show .home-image-wrapper {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* LIQUID MORPHING BLOB WITH NEON CONTOUR OUTLINE - (100% RECREATION OF USER'S INSPIRATION SCREENSHOT) */
+
+/* Ambient Radial Glow */
+.blob-ambient-glow {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.35) 0%,
+    rgba(168, 85, 247, 0.22) 45%,
+    transparent 70%
+  );
+  filter: blur(65px);
+  z-index: 0;
+  animation: blobAuraPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes blobAuraPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.15) translate(10px, -10px);
+    opacity: 1;
+  }
+}
+
+/* Morphing Stage */
+.morph-blob-stage {
+  position: relative;
+  z-index: 2;
+  width: 360px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: blobStageFloat 6s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes blobStageFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* 1. Primary Glowing Cyan Contour Line (Exactly like screenshot!) */
+.blob-contour-line {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.blob-contour-line.primary-cyan {
+  width: 375px;
+  height: 415px;
+  border: 2.5px solid #00f2fe;
+  filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.85)) drop-shadow(0 0 25px rgba(6, 182, 212, 0.5));
+  animation: morphContourCyan 10s ease-in-out infinite;
+  opacity: 0.95;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+/* 2. Secondary Purple Glow Contour Line */
+.blob-contour-line.secondary-purple {
+  width: 385px;
+  height: 425px;
+  border: 1.5px solid rgba(168, 85, 247, 0.55);
+  filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.6));
+  animation: morphContourPurple 12s ease-in-out infinite reverse;
+  opacity: 0.65;
+}
+
+.morph-blob-stage:hover .primary-cyan {
+  filter: drop-shadow(0 0 20px rgba(0, 242, 254, 1)) drop-shadow(0 0 40px rgba(6, 182, 212, 0.75));
+  opacity: 1;
+}
+
+/* 3. Inner Liquid Morphing Shape Holding Photo */
+.morph-blob-inner {
+  position: relative;
+  z-index: 2;
+  width: 345px;
+  height: 385px;
+  background: radial-gradient(circle at 50% 30%, #15182e 0%, #0d1020 60%, #070810 100%);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8),
+              inset 0 0 35px rgba(6, 182, 212, 0.15),
+              inset 0 0 20px rgba(168, 85, 247, 0.15);
+  overflow: hidden;
+  animation: morphLiquidShape 8s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.morph-blob-stage:hover .morph-blob-inner {
+  transform: scale(1.03);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.9),
+              inset 0 0 45px rgba(0, 242, 254, 0.3);
+}
+
+/* 4. Rohit's Photo */
+.morph-blob-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  z-index: 2;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.morph-blob-stage:hover .morph-blob-img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.6)) contrast(104%);
+}
+
+/* Lighting Overlay */
+.blob-lighting-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 20%, rgba(6, 182, 212, 0.18) 0%, transparent 60%);
+}
+
+/* ORGANIC MORPHING KEYFRAMES */
+@keyframes morphLiquidShape {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 45% 55% 50% 50% / 40% 45% 55% 60%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  75% {
+    border-radius: 55% 45% 40% 60% / 60% 50% 45% 50%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+@keyframes morphContourCyan {
+  0% {
+    border-radius: 40% 60% 60% 40% / 40% 30% 70% 60%;
+    transform: rotate(0deg);
+  }
+  33% {
+    border-radius: 65% 35% 45% 55% / 35% 65% 35% 65%;
+    transform: rotate(120deg);
+  }
+  66% {
+    border-radius: 35% 65% 65% 35% / 55% 35% 65% 45%;
+    transform: rotate(240deg);
+  }
+  100% {
+    border-radius: 40% 60% 60% 40% / 40% 30% 70% 60%;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes morphContourPurple {
+  0% {
+    border-radius: 60% 40% 40% 60% / 50% 60% 30% 50%;
+    transform: rotate(0deg);
+  }
+  50% {
+    border-radius: 35% 65% 55% 45% / 60% 35% 65% 40%;
+    transform: rotate(-180deg);
+  }
+  100% {
+    border-radius: 60% 40% 40% 60% / 50% 60% 30% 50%;
+    transform: rotate(-360deg);
+  }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1080px) {
+  .home {
+    padding: 120px 5% 60px;
+  }
+
+  .home-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 50px;
+  }
+
+  .home-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-role {
+    justify-content: center;
+  }
+
+  .home-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-buttons {
+    justify-content: center;
+  }
+
+  .home-socials {
+    justify-content: center;
+  }
+
+  .home-image-wrapper {
+    order: 2;
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 640px) {
+  .home {
+    padding: 110px 4% 50px;
+  }
+
+  .home-title {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+  }
+
+  .morph-blob-stage {
+    width: 290px;
+    height: 330px;
+  }
+
+  .blob-contour-line.primary-cyan {
+    width: 300px;
+    height: 340px;
+  }
+
+  .blob-contour-line.secondary-purple {
+    width: 310px;
+    height: 350px;
+  }
+
+  .morph-blob-inner {
+    width: 280px;
+    height: 320px;
+  }
+}
