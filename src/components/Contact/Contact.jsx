@@ -1,19 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import {
   FaEnvelope,
-  FaLocationDot,
   FaPaperPlane,
   FaCheck,
-  FaCopy,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaDiscord,
   FaUser,
   FaPenNib,
   FaMessage,
-  FaClock,
 } from "react-icons/fa6";
+import ContactIllustration from "./ContactIllustration";
 import "./Contact.css";
 
 function Contact() {
@@ -31,7 +25,6 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const recipientEmail = "darkbyte225@gmail.com";
 
@@ -114,12 +107,6 @@ function Contact() {
   };
 
   // Copy Email to Clipboard
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(recipientEmail);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2500);
-  };
-
   return (
     <section
       className={`contact-sec-container ${
@@ -147,104 +134,9 @@ function Contact() {
 
         {/* 2-Column Main Wrapper */}
         <div className="contact-sec-wrapper">
-          {/* Left Column: Contact Info & Socials */}
-          <div className="contact-sec-info-col reveal-left">
-            {/* Quick Response Badge */}
-            <div className="contact-sec-response-card">
-              <div className="response-icon">
-                <FaClock />
-              </div>
-              <div className="response-text">
-                <strong>Fast Response Guaranteed</strong>
-                <p>I typically respond to inquiries within 24 hours.</p>
-              </div>
-            </div>
-
-            {/* Contact Details List */}
-            <div className="contact-sec-info-cards">
-              {/* Direct Email */}
-              <div className="contact-sec-info-item">
-                <div className="contact-sec-info-icon">
-                  <FaEnvelope />
-                </div>
-                <div className="contact-sec-info-text">
-                  <span>Direct Email</span>
-                  <strong>{recipientEmail}</strong>
-                </div>
-                <button
-                  type="button"
-                  className={`contact-sec-copy-btn ${copiedEmail ? "copied" : ""}`}
-                  onClick={handleCopyEmail}
-                  title="Copy Email Address"
-                >
-                  {copiedEmail ? <FaCheck /> : <FaCopy />}
-                  <span>{copiedEmail ? "Copied!" : "Copy"}</span>
-                </button>
-              </div>
-
-              {/* Location */}
-              <div className="contact-sec-info-item">
-                <div className="contact-sec-info-icon">
-                  <FaLocationDot />
-                </div>
-                <div className="contact-sec-info-text">
-                  <span>Location</span>
-                  <strong>Uttar Pradesh, India (Available Remote)</strong>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Grid */}
-            <div className="contact-sec-socials">
-              <span className="contact-sec-socials-label">
-                CONNECT ON SOCIALS
-              </span>
-              <div className="contact-sec-social-grid">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-sec-social-link"
-                  aria-label="GitHub Profile"
-                >
-                  <FaGithub className="social-icon" />
-                  <span>GitHub</span>
-                </a>
-
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-sec-social-link"
-                  aria-label="LinkedIn Profile"
-                >
-                  <FaLinkedin className="social-icon" />
-                  <span>LinkedIn</span>
-                </a>
-
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-sec-social-link"
-                  aria-label="Twitter Profile"
-                >
-                  <FaXTwitter className="social-icon" />
-                  <span>X / Twitter</span>
-                </a>
-
-                <a
-                  href="https://discord.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-sec-social-link"
-                  aria-label="Discord Community"
-                >
-                  <FaDiscord className="social-icon" />
-                  <span>Discord</span>
-                </a>
-              </div>
-            </div>
+          {/* Left Column: Animated Mail Illustration */}
+          <div className="contact-sec-illustration-col reveal-left">
+            <ContactIllustration />
           </div>
 
           {/* Right Column: Interactive Form */}

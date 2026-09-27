@@ -1,0 +1,484 @@
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT ILLUSTRATION
+   • Envelope flap opens ↕ closes with smooth animation
+   • Letter nested inside pocket (behind front folds)
+   • Visible first, slides down into pocket when closing
+   • Paper airplane flies smooth professional loop IN FRONT only
+   • Full dark + light theme support
+═══════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────
+   WRAPPER
+────────────────────────────────────────────── */
+.contact-illustration-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+/* Ambient glow */
+.illustration-ambient-glow {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.28) 0%,
+    rgba(99, 102, 241, 0.12) 52%,
+    transparent 74%
+  );
+  filter: blur(52px);
+  pointer-events: none;
+  z-index: 0;
+  animation: glowBreathe 6s ease-in-out infinite alternate;
+}
+
+.contact-mail-svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.32));
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+}
+.contact-illustration-wrap:hover .contact-mail-svg {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* ──────────────────────────────────────────────
+   BACKGROUND BLOBS
+────────────────────────────────────────────── */
+.blob-outer { fill: url(#blobOuterDark); }
+.blob-inner {
+  fill: url(#blobInnerDark);
+  transform-box: view-box;
+  transform-origin: 290px 265px;
+  animation: blobPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes blobPulse {
+  from { transform: scale(1)    rotate( 0deg); }
+  to   { transform: scale(1.04) rotate(-2deg); }
+}
+
+/* Floor shadow under envelope */
+.env-ground-shadow {
+  fill: #140730;
+  opacity: 0.38;
+  filter: blur(8px);
+  transform-box: view-box;
+  transform-origin: 300px 406px;
+  animation: shadowPulse 5s ease-in-out infinite alternate;
+}
+@keyframes shadowPulse {
+  from { transform: scale(1);    opacity: 0.38; }
+  to   { transform: scale(0.92); opacity: 0.24; }
+}
+
+/* ──────────────────────────────────────────────
+   ENVELOPE GROUP — Luxury Organic 3D Floating Physics
+   Gentle 2-axis levitation with natural rotational sway
+────────────────────────────────────────────── */
+.illustration-envelope-group {
+  transform-box: view-box;
+  transform-origin: 300px 285px;
+  animation: envFloatingPhysics 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes envFloatingPhysics {
+  0% {
+    transform: translateY(0px) rotate(0.0deg);
+  }
+  33% {
+    transform: translateY(-7px) rotate(-0.7deg);
+  }
+  66% {
+    transform: translateY(-11px) rotate(0.5deg);
+  }
+  100% {
+    transform: translateY(-4px) rotate(0.9deg);
+  }
+}
+
+/* Floor shadow synchronized dynamically with envelope elevation */
+.env-ground-shadow {
+  fill: #1a083d;
+  opacity: 0.36;
+  filter: blur(8px);
+  transform-box: view-box;
+  transform-origin: 300px 406px;
+  animation: shadowDynamicPhysics 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes shadowDynamicPhysics {
+  0% {
+    transform: scale(1);
+    opacity: 0.36;
+    filter: blur(8px);
+  }
+  50% {
+    transform: scale(0.88);
+    opacity: 0.20;
+    filter: blur(12px);
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0.38;
+    filter: blur(7px);
+  }
+}
+
+/* ──────────────────────────────────────────────
+   LETTER — Physical Real-World Choreography (8.0s cycle)
+   • 100% physical card (NO ghost opacity fade)
+   • Naturally tucked behind front pocket folds
+   • True physical causality:
+       1. Letter glides in FIRST
+       2. Flap folds down in 3D OVER it
+       3. Flap lifts UP FIRST
+       4. Letter emerges gracefully with soft spring settle
+────────────────────────────────────────────── */
+.illustration-letter-wrap {
+  pointer-events: none;
+}
+
+.illustration-letter {
+  transform-box: view-box;
+  transform-origin: 300px 215px;
+  animation: letterPhysicsCycle 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-card        { fill: #ffffff; }
+.letter-line-header { fill: #cad7e8; }
+.letter-line        { fill: #e2ebf5; }
+
+/* Interactive subtle lift on hover */
+.contact-illustration-wrap:hover .illustration-letter {
+  transform: translateY(-14px);
+}
+
+@keyframes letterPhysicsCycle {
+  /* 0% – 36%: HERO STATE — Letter proudly visible in open envelope */
+  0%, 36.0% {
+    transform: translateY(0px);
+  }
+  /* 36% – 48%: Smooth physical glide down into the pocket */
+  42.0% {
+    transform: translateY(35px);
+  }
+  48.0% {
+    transform: translateY(92px);
+  }
+  /* 48% – 70%: Tucked safely inside while envelope is sealed */
+  70.0% {
+    transform: translateY(92px);
+  }
+  /* 70% – 82%: Flap has opened; letter glides back up into view */
+  77.0% {
+    transform: translateY(35px);
+  }
+  82.0% {
+    transform: translateY(-4px); /* soft organic spring overshoot */
+  }
+  86.0%, 100.0% {
+    transform: translateY(0px); /* settled hero rest */
+  }
+}
+
+/* ──────────────────────────────────────────────
+   ENVELOPE FLAP — OPEN (triangle UP)
+   Folds forward in 3D only AFTER letter is tucked inside
+────────────────────────────────────────────── */
+.env-open-flap-group {
+  transform-box: view-box;
+  transform-origin: 300px 185px;
+  animation: flapOpenPhysics 8s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+}
+
+@keyframes flapOpenPhysics {
+  /* 0% – 47%: Fully OPEN while letter is visible & gliding in */
+  0%, 47.0% {
+    transform: scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  /* 47% – 54%: Folds down smoothly towards crease hinge */
+  50.5% {
+    transform: scaleY(0.42);
+    opacity: 0.9;
+    filter: brightness(0.92);
+  }
+  54.0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  /* 54% – 66%: Hidden while closed */
+  66.0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  /* 66% – 73%: Unfolds back UP to open position before letter emerges */
+  69.5% {
+    transform: scaleY(0.48);
+    opacity: 0.9;
+    filter: brightness(0.95);
+  }
+  73.0% {
+    transform: scaleY(1.03);
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+  76.0%, 100.0% {
+    transform: scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+/* ──────────────────────────────────────────────
+   ENVELOPE FLAP — CLOSED (triangle DOWN)
+   Folds down over front pocket with smooth 3D cushion
+────────────────────────────────────────────── */
+.env-closed-flap-group {
+  transform-box: view-box;
+  transform-origin: 300px 185px;
+  animation: flapClosedPhysics 8s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+}
+
+@keyframes flapClosedPhysics {
+  /* 0% – 53.9%: Hidden while open */
+  0%, 53.9% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  /* 54% – 66%: Folds down and lands gently over the front folds */
+  54.0% {
+    transform: scaleY(0);
+    opacity: 0.85;
+    filter: brightness(0.90);
+  }
+  58.0% {
+    transform: scaleY(1.03);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  60.0%, 65.5% {
+    transform: scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  /* 65.5% – 70%: Lifts up past hinge */
+  70.0% {
+    transform: scaleY(0);
+    opacity: 0;
+    filter: brightness(0.92);
+  }
+  70.1%, 100.0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   @ BADGE
+────────────────────────────────────────────── */
+.illustration-at-badge {
+  transform-box: view-box;
+  transform-origin: 198px 254px;
+  animation: badgeBob 5s ease-in-out infinite alternate;
+}
+.at-badge-bg     { fill: #ffffff; }
+.at-badge-border { stroke: #dcd4fa; stroke-width: 1.5; fill: none; }
+.at-badge-text   { fill: #3c21d1; }
+
+@keyframes badgeBob {
+  from { transform: translateY( 0px) rotate( 0deg); }
+  to   { transform: translateY(-5px) rotate( 3deg); }
+}
+.contact-illustration-wrap:hover .illustration-at-badge {
+  transform: scale(1.12) rotate(-8deg);
+}
+
+/* ──────────────────────────────────────────────
+   ID CARD
+────────────────────────────────────────────── */
+.illustration-id-card {
+  transform-box: view-box;
+  transform-origin: 382px 326px;
+  animation: cardFloat 5.5s ease-in-out infinite alternate;
+}
+.id-card-bg          { fill: #ffffff; stroke: #e9eef6; stroke-width: 1; }
+.id-avatar-circle    { fill: #eef3f9; }
+.id-avatar-head,
+.id-avatar-body      { fill: #c8d2e0; }
+.id-card-primary-bar { fill: #624ae4; }
+.id-card-bar         { fill: #dfe5f3; }
+
+@keyframes cardFloat {
+  from { transform: translateY( 0px) rotate( 0.0deg); }
+  to   { transform: translateY(-6px) rotate(-1.8deg); }
+}
+.contact-illustration-wrap:hover .illustration-id-card {
+  transform: scale(1.07) translateY(-5px);
+}
+
+/* ──────────────────────────────────────────────
+   3D AERODYNAMIC FLIGHT DYNAMICS
+   - Narrow 3D orbital loop strictly within user's sketch
+   - Real 3D banking (rotateX / tilt into turn)
+   - Dynamic 3D depth scaling (0.86 to 1.28) & elevation
+────────────────────────────────────────────── */
+.illustration-plane-rig {
+  transform-box: view-box;
+  animation: planeOrbitNatural 4.6s linear infinite;
+  transform-origin: 0 0;
+  transform-style: preserve-3d;
+}
+
+.plane-glide-core {
+  transform-box: fill-box;
+  transform-origin: 0 0;
+  animation: planeGlidingWave 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes planeGlidingWave {
+  0% {
+    transform: translateY(-1.8px) rotate(-1.4deg);
+  }
+  50% {
+    transform: translateY(0.2px) rotate(0.2deg);
+  }
+  100% {
+    transform: translateY(1.8px) rotate(1.4deg);
+  }
+}
+
+@keyframes planeOrbitNatural {
+  0.0%   { transform: translate(115.2px, 385.9px) rotate(-118.0deg) rotateX(0.0deg)  scale(1.24); }
+  3.1%   { transform: translate(111.3px, 369.9px) rotate(-90.5deg)  rotateX(2.3deg)  scale(1.24); }
+  6.3%   { transform: translate(114.9px, 350.5px) rotate(-70.6deg)  rotateX(4.6deg)  scale(1.24); }
+  9.4%   { transform: translate(125.8px, 328.7px) rotate(-57.7deg)  rotateX(6.7deg)  scale(1.24); }
+  12.5%  { transform: translate(143.5px, 305.2px) rotate(-48.9deg)  rotateX(8.5deg)  scale(1.24); }
+  15.6%  { transform: translate(167.5px, 280.9px) rotate(-42.3deg)  rotateX(10.0deg) scale(1.24); }
+  18.8%  { transform: translate(196.8px, 256.7px) rotate(-37.0deg)  rotateX(11.1deg) scale(1.24); }
+  21.9%  { transform: translate(230.2px, 233.7px) rotate(-32.3deg)  rotateX(11.8deg) scale(1.24); }
+  25.0%  { transform: translate(266.5px, 212.6px) rotate(-28.0deg)  rotateX(12.0deg) scale(1.24); }
+  28.1%  { transform: translate(304.3px, 194.3px) rotate(-23.7deg)  rotateX(11.8deg) scale(1.24); }
+  31.3%  { transform: translate(342.1px, 179.5px) rotate(-19.0deg)  rotateX(11.1deg) scale(1.24); }
+  34.4%  { transform: translate(378.5px, 168.7px) rotate(-13.7deg)  rotateX(10.0deg) scale(1.24); }
+  37.5%  { transform: translate(412.0px, 162.4px) rotate(-7.1deg)   rotateX(8.5deg)  scale(1.24); }
+  40.6%  { transform: translate(441.5px, 160.9px) rotate(1.7deg)    rotateX(6.7deg)  scale(1.24); }
+  43.8%  { transform: translate(465.7px, 164.0px) rotate(14.6deg)   rotateX(4.6deg)  scale(1.24); }
+  46.9%  { transform: translate(483.7px, 171.9px) rotate(34.5deg)   rotateX(2.3deg)  scale(1.24); }
+  50.0%  { transform: translate(494.8px, 184.1px) rotate(62.0deg)   rotateX(0.0deg)  scale(1.24); }
+  53.1%  { transform: translate(498.7px, 200.1px) rotate(89.5deg)   rotateX(-2.3deg) scale(1.24); }
+  56.3%  { transform: translate(495.1px, 219.5px) rotate(109.4deg)  rotateX(-4.6deg) scale(1.24); }
+  59.4%  { transform: translate(484.2px, 241.3px) rotate(122.3deg)  rotateX(-6.7deg) scale(1.24); }
+  62.5%  { transform: translate(466.5px, 264.8px) rotate(131.1deg)  rotateX(-8.5deg) scale(1.24); }
+  65.6%  { transform: translate(442.5px, 289.1px) rotate(137.7deg)  rotateX(-10.0deg)scale(1.24); }
+  68.8%  { transform: translate(413.2px, 313.3px) rotate(143.0deg)  rotateX(-11.1deg)scale(1.24); }
+  71.9%  { transform: translate(379.8px, 336.3px) rotate(147.7deg)  rotateX(-11.8deg)scale(1.24); }
+  75.0%  { transform: translate(343.5px, 357.4px) rotate(152.0deg)  rotateX(-12.0deg)scale(1.24); }
+  78.1%  { transform: translate(305.7px, 375.7px) rotate(156.3deg)  rotateX(-11.8deg)scale(1.24); }
+  81.3%  { transform: translate(267.9px, 390.5px) rotate(161.0deg)  rotateX(-11.1deg)scale(1.24); }
+  84.4%  { transform: translate(231.5px, 401.3px) rotate(166.3deg)  rotateX(-10.0deg)scale(1.24); }
+  87.5%  { transform: translate(198.0px, 407.6px) rotate(172.9deg)  rotateX(-8.5deg) scale(1.24); }
+  90.6%  { transform: translate(168.5px, 409.1px) rotate(181.7deg)  rotateX(-6.7deg) scale(1.24); }
+  93.8%  { transform: translate(144.3px, 406.0px) rotate(194.6deg)  rotateX(-4.6deg) scale(1.24); }
+  96.9%  { transform: translate(126.3px, 398.1px) rotate(214.5deg)  rotateX(-2.3deg) scale(1.24); }
+  100.0% { transform: translate(115.2px, 385.9px) rotate(242.0deg) rotateX(-0.0deg) scale(1.24); }
+}
+
+/* Airplane 3D Facet Fills */
+.plane-keel      { fill: #94a3b8; }
+.plane-wing-bot  { fill: url(#planeWingBotGrad); }
+.plane-fold-bot  { fill: #b0c0d4; }
+.plane-wing-top  { fill: url(#planeWingTopGrad); }
+.plane-fold-top  { fill: #f1f5fa; }
+.plane-spine     { stroke: #7e95ad; stroke-width: 1.4; }
+.plane-highlight { stroke: #ffffff; stroke-width: 1.1; }
+
+/* Speed up on hover */
+.contact-illustration-wrap:hover .illustration-plane-rig {
+  animation-duration: 2.8s;
+}
+
+/* ──────────────────────────────────────────────
+   MISC
+────────────────────────────────────────────── */
+@keyframes glowBreathe {
+  from { opacity: 0.55; transform: scale(0.94); }
+  to   { opacity: 1.00; transform: scale(1.10); }
+}
+
+/* ══════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+══════════════════════════════════════════════ */
+html[data-theme="light"] .illustration-ambient-glow {
+  background: radial-gradient(circle, rgba(168,85,247,0.14) 0%, rgba(99,102,241,0.06) 52%, transparent 72%);
+}
+html[data-theme="light"] .contact-mail-svg {
+  filter: drop-shadow(0 10px 28px rgba(100, 60, 200, 0.14));
+}
+html[data-theme="light"] .blob-outer { fill: url(#blobOuterLight); }
+html[data-theme="light"] .blob-inner { fill: url(#blobInnerLight); }
+html[data-theme="light"] .env-ground-shadow {
+  fill: #7c68b0;
+  opacity: 0.18;
+  filter: blur(6px);
+}
+
+html[data-theme="light"] .letter-card        { fill: #ffffff; stroke: rgba(15,23,42,0.06); stroke-width: 1; }
+html[data-theme="light"] .letter-line-header { fill: #64748b; }
+html[data-theme="light"] .letter-line        { fill: #94a3b8; }
+
+html[data-theme="light"] .at-badge-border    { stroke: rgba(15,23,42,0.1); }
+html[data-theme="light"] .id-card-bg         { stroke: rgba(15,23,42,0.08); }
+html[data-theme="light"] .id-avatar-circle   { fill: #f1f5f9; }
+html[data-theme="light"] .id-avatar-head,
+html[data-theme="light"] .id-avatar-body     { fill: #c5cae9; }
+html[data-theme="light"] .id-card-bar        { fill: #c5cae9; }
+
+html[data-theme="light"] .plane-wing-top  { fill: url(#planeWingTopGrad); }
+html[data-theme="light"] .plane-wing-bot  { fill: url(#planeWingBotGrad); }
+html[data-theme="light"] .plane-fold-bot  { fill: #cbd5e1; }
+html[data-theme="light"] .plane-keel      { fill: #94a3b8; }
+html[data-theme="light"] .plane-spine     { stroke: #64748b; }
+
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE DESIGN
+────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .contact-illustration-wrap {
+    max-width: 440px;
+    margin: 0 auto 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-illustration-wrap {
+    max-width: min(340px, 90vw);
+    margin: 0 auto 12px;
+  }
+  .contact-mail-svg {
+    filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.28));
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-illustration-wrap {
+    max-width: min(285px, 92vw);
+    margin: 0 auto 8px;
+  }
+}
+

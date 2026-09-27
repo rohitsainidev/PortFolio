@@ -207,36 +207,39 @@ function Skills() {
                 <span />
               </div>
 
-              {/* Skill Items List */}
-              <div className={`skills-sec-list ${activeFilter !== "all" ? "skills-grid-expanded" : ""}`}>
+              {/* Modern Tech Chips Grid (2-Column Balanced Layout) */}
+              <div className={`skills-sec-chips-grid ${activeFilter !== "all" ? "skills-chips-expanded" : ""}`}>
                 {cat.skills.map((skill) => (
-                  <div className="skills-sec-item" key={skill.name}>
-                    <div className="skills-sec-info">
-                      <div className="skills-sec-left">
-                        <span
-                          className="skills-sec-tech-icon"
-                          style={{ color: skill.color }}
-                        >
-                          {skill.icon}
-                        </span>
-                        <div className="skills-sec-tech-text">
-                          <strong>{skill.name}</strong>
-                          <small>{skill.type}</small>
-                        </div>
-                      </div>
-
-                      <span className="skills-sec-percent">{skill.level}%</span>
+                  <div
+                    className="skills-chip-item"
+                    key={skill.name}
+                    style={{
+                      "--chip-color": skill.color,
+                    }}
+                  >
+                    <div className="skills-chip-icon-box">
+                      <span className="skills-chip-icon" style={{ color: skill.color }}>
+                        {skill.icon}
+                      </span>
                     </div>
 
-                    {/* Progress Bar */}
-                    <div className="skills-sec-progress-track">
-                      <span
-                        className="skills-sec-progress-fill"
-                        style={{
-                          "--skill-fill-level": `${skill.level}%`,
-                          "--skill-color": skill.color,
-                        }}
-                      />
+                    <div className="skills-chip-body">
+                      <div className="skills-chip-top">
+                        <strong className="skills-chip-name">{skill.name}</strong>
+                        <span className="skills-chip-percent">{skill.level}%</span>
+                      </div>
+                      <span className="skills-chip-type">{skill.type}</span>
+
+                      {/* Sleek Integrated Micro-Meter */}
+                      <div className="skills-chip-meter-track">
+                        <span
+                          className="skills-chip-meter-fill"
+                          style={{
+                            "--chip-fill": `${skill.level}%`,
+                            "--chip-color": skill.color,
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

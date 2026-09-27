@@ -290,147 +290,348 @@
   box-shadow: 0 0 10px var(--card-accent, #a855f7);
 }
 
-/* SKILL ITEMS & PROGRESS BARS */
-.skills-sec-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* ──────────────────────────────────────────────
+   MODERN 2-COLUMN TECH CHIPS GRID
+────────────────────────────────────────────── */
+.skills-sec-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
   flex: 1;
 }
 
-/* When a single category is active, display in 2 columns on desktop */
-.skills-sec-list.skills-grid-expanded {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+/* Expanded layout when single category is filtered */
+.skills-sec-chips-grid.skills-chips-expanded {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
-.skills-sec-item {
+/* Individual Tech Chip */
+.skills-chip-item {
   position: relative;
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
-}
-
-.skills-sec-item:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.08);
-  transform: translateX(3px);
-}
-
-.skills-sec-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 7px;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: default;
 }
 
-.skills-sec-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.skills-chip-item:hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: color-mix(in srgb, var(--chip-color, #a855f7) 45%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35),
+              0 0 16px color-mix(in srgb, var(--chip-color, #a855f7) 20%, transparent);
 }
 
-.skills-sec-tech-icon {
+/* Brand Icon Box */
+.skills-chip-icon-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.skills-chip-item:hover .skills-chip-icon-box {
+  background: color-mix(in srgb, var(--chip-color, #a855f7) 15%, transparent);
+  border-color: color-mix(in srgb, var(--chip-color, #a855f7) 40%, transparent);
+}
+
+.skills-chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.skills-sec-item:hover .skills-sec-tech-icon {
+.skills-chip-item:hover .skills-chip-icon {
   transform: scale(1.15);
-  filter: drop-shadow(0 0 6px currentColor);
+  filter: drop-shadow(0 0 8px var(--chip-color, currentColor));
 }
 
-.skills-sec-tech-text strong {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 600;
+/* Chip Body */
+.skills-chip-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.skills-chip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.skills-chip-name {
+  font-size: 13px;
+  font-weight: 700;
   color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.2px;
 }
 
-.skills-sec-tech-text small {
-  font-size: 11px;
-  color: #94a3b8;
-}
-
-.skills-sec-percent {
+.skills-chip-percent {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #94a3b8;
+  flex-shrink: 0;
   transition: color 0.2s ease;
 }
 
-.skills-sec-item:hover .skills-sec-percent {
-  color: #ffffff;
+.skills-chip-item:hover .skills-chip-percent {
+  color: var(--chip-color, #ffffff);
 }
 
-/* Progress Track */
-.skills-sec-progress-track {
+.skills-chip-type {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Integrated Micro-Meter */
+.skills-chip-meter-track {
   position: relative;
   width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 50px;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
   overflow: hidden;
+  margin-top: 5px;
 }
 
-.skills-sec-progress-fill {
+.skills-chip-meter-fill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: var(--skill-fill-level, 0%);
-  background: linear-gradient(
-    90deg,
-    rgba(168, 85, 247, 0.8),
-    var(--skill-color, #c084fc)
-  );
-  border-radius: 50px;
-  box-shadow: 0 0 8px var(--skill-color, rgba(168, 85, 247, 0.6));
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  width: var(--chip-fill, 0%);
+  background: var(--chip-color, #a855f7);
+  border-radius: 4px;
+  box-shadow: 0 0 6px var(--chip-color, rgba(168, 85, 247, 0.6));
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
+/* ──────────────────────────────────────────────
+   RESPONSIVE DESIGN
+────────────────────────────────────────────── */
+@media (max-width: 1180px) {
   .skills-sec-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .skills-sec-card.skills-theme-devops {
-    grid-column: span 2;
-  }
-
-  .skills-sec-list.skills-grid-expanded {
     grid-template-columns: 1fr;
+    max-width: 780px;
+    margin: 0 auto;
+    gap: 22px;
+  }
+
+  .skills-sec-chips-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .skills-sec-container {
-    padding: 100px 5% 70px;
+    padding: 85px 5% 60px;
   }
 
-  .skills-sec-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-sec-card.skills-theme-devops {
-    grid-column: span 1;
+  .skills-sec-header {
+    margin-bottom: 32px;
   }
 
   .skills-sec-card {
     padding: 22px 18px;
+    border-radius: 18px;
   }
 
-  .skills-sec-list.skills-grid-expanded {
+  .skills-sec-chips-grid.skills-chips-expanded {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .skills-sec-chips-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .skills-sec-chips-grid.skills-chips-expanded {
     grid-template-columns: 1fr;
   }
+
+  .skills-chip-item {
+    padding: 9px 11px;
+  }
+
+  .skills-filter-pills {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 7px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   WHITE / LIGHT THEME SYSTEM ([data-theme="light"])
+   Crisp typography, frosted glass, zero washout
+══════════════════════════════════════════════ */
+html[data-theme="light"] .skills-sec-container {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .skills-sec-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .skills-sec-badge {
+  color: #7c3aed;
+  text-shadow: none;
+}
+
+html[data-theme="light"] .skills-sec-desc {
+  color: #475569;
+}
+
+/* Background Ambient Glows in Light Mode */
+html[data-theme="light"] .skills-sec-glow-left {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+}
+
+html[data-theme="light"] .skills-sec-glow-right {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+}
+
+/* Filter Pills */
+html[data-theme="light"] .filter-btn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+html[data-theme="light"] .filter-btn:hover {
+  color: #7c3aed;
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+html[data-theme="light"] .filter-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  border-color: #7c3aed;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+}
+
+/* Category Cards in Light Mode */
+html[data-theme="light"] .skills-sec-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+html[data-theme="light"] .skills-sec-card::before {
+  opacity: 0.85;
+}
+
+html[data-theme="light"] .skills-sec-card:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.10),
+              0 0 24px rgba(124, 58, 237, 0.10);
+}
+
+html[data-theme="light"] .skills-sec-card-heading h3 {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .skills-sec-card-heading span {
+  color: #64748b;
+}
+
+html[data-theme="light"] .skills-sec-divider {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+/* Tech Chips in Light Mode */
+html[data-theme="light"] .skills-chip-item {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+}
+
+html[data-theme="light"] .skills-chip-item:hover {
+  background: #ffffff;
+  border-color: color-mix(in srgb, var(--chip-color, #7c3aed) 55%, #cbd5e1);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.09),
+              0 0 16px color-mix(in srgb, var(--chip-color, #7c3aed) 18%, transparent);
+}
+
+/* Icon Box in Light Mode */
+html[data-theme="light"] .skills-chip-icon-box {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.04);
+}
+
+html[data-theme="light"] .skills-chip-item:hover .skills-chip-icon-box {
+  background: color-mix(in srgb, var(--chip-color, #7c3aed) 12%, #ffffff);
+  border-color: color-mix(in srgb, var(--chip-color, #7c3aed) 40%, transparent);
+}
+
+/* Tech Name, Type & Percentage in Light Mode */
+html[data-theme="light"] .skills-chip-name {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .skills-chip-type {
+  color: #64748b;
+}
+
+html[data-theme="light"] .skills-chip-percent {
+  color: #64748b;
+}
+
+html[data-theme="light"] .skills-chip-meter-track {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+/* Overrides for white/near-white tech icons in Light Mode (NextJS, GitHub, Vercel, Express) */
+html[data-theme="light"] .skills-chip-item[style*="#ffffff"] .skills-chip-icon,
+html[data-theme="light"] .skills-chip-item[style*="#e2e8f0"] .skills-chip-icon {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .skills-chip-item[style*="#ffffff"] .skills-chip-meter-fill,
+html[data-theme="light"] .skills-chip-item[style*="#e2e8f0"] .skills-chip-meter-fill {
+  background: #0f172a !important;
+  box-shadow: 0 0 6px rgba(15, 23, 42, 0.4) !important;
+}
+
+html[data-theme="light"] .skills-chip-item[style*="#ffffff"]:hover .skills-chip-percent,
+html[data-theme="light"] .skills-chip-item[style*="#e2e8f0"]:hover .skills-chip-percent {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .skills-chip-item[style*="#ffffff"]:hover,
+html[data-theme="light"] .skills-chip-item[style*="#e2e8f0"]:hover {
+  border-color: rgba(15, 23, 42, 0.35) !important;
 }

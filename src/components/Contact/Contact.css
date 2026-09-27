@@ -99,12 +99,20 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 40px;
+  align-items: center;
 }
 
-/* LEFT COLUMN: INFO & SOCIALS */
+/* LEFT COLUMN: ANIMATED ILLUSTRATION */
+.contact-sec-illustration-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* LEFT COLUMN: INFO & SOCIALS (LEGACY / FALLBACK) */
 .contact-sec-info-col {
   display: flex;
   flex-direction: column;
@@ -576,25 +584,107 @@
 /* RESPONSIVE DESIGN */
 @media (max-width: 960px) {
   .contact-sec-container {
-    padding: 100px 5% 70px;
+    padding: 90px 5% 60px;
   }
 
   .contact-sec-wrapper {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+  }
+
+  .contact-sec-illustration-col {
+    order: 1;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .contact-sec-form-col {
+    order: 2;
+    width: 100%;
   }
 
   .contact-sec-form {
-    padding: 28px 22px;
+    padding: 26px 20px;
+    max-width: 620px;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 600px) {
+  .contact-sec-container {
+    padding: 65px 4% 45px;
+  }
+
+  .contact-sec-header {
+    margin-bottom: 28px;
+  }
+
+  .contact-sec-header h2 {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+
+  .contact-sec-header p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .contact-sec-wrapper {
+    gap: 18px;
+  }
+
+  .contact-sec-form {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .contact-sec-form-header h3 {
+    font-size: 20px;
+  }
+
+  .contact-sec-form-header p {
+    font-size: 13px;
+  }
+
   .contact-sec-form-row {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-sec-input-wrap input,
+  .contact-sec-input-wrap textarea {
+    font-size: 15px;
+    padding: 12px 14px 12px 42px;
+  }
+
+  .contact-sec-submit-btn {
+    padding: 13px 20px;
+    font-size: 15px;
+    min-height: 48px;
   }
 
   .contact-sec-social-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-sec-container {
+    padding: 50px 3% 35px;
+  }
+
+  .contact-sec-form {
+    padding: 18px 12px;
+    border-radius: 14px;
+  }
+
+  .contact-sec-input-wrap input,
+  .contact-sec-input-wrap textarea {
+    padding: 11px 12px 11px 38px;
+    font-size: 14px;
+  }
+
+  .contact-sec-input-icon {
+    left: 12px;
+    font-size: 14px;
   }
 }
