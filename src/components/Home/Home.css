@@ -524,6 +524,34 @@
     letter-spacing: -1.5px;
   }
 
+  /* Side-by-side balanced dual CTA buttons on mobile */
+  .home-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 360px;
+    margin: 28px auto 0;
+  }
+
+  .home-buttons .primary-btn,
+  .home-buttons .secondary-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .home-socials {
+    margin-top: 26px;
+    gap: 10px;
+    justify-content: center;
+  }
+
   .morph-blob-stage {
     width: 290px;
     height: 330px;
@@ -542,5 +570,18 @@
   .morph-blob-inner {
     width: 280px;
     height: 320px;
+  }
+}
+
+@media (max-width: 350px) {
+  .home-buttons {
+    flex-direction: column;
+    gap: 10px;
+    max-width: 260px;
+  }
+
+  .home-buttons .primary-btn,
+  .home-buttons .secondary-btn {
+    width: 100%;
   }
 }

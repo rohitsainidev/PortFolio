@@ -111,7 +111,7 @@ function Navbar({ theme = "dark", toggleTheme }) {
 
           {/* GitHub */}
           <a
-            href="https://github.com/"
+            href="https://github.com/rohitsainidev"
             target="_blank"
             rel="noreferrer"
             className="github-btn"

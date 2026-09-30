@@ -97,7 +97,6 @@ function Contact() {
       }
     } catch (err) {
       console.error("Submission error:", err);
-      // Even if fetch throws on CORS, formsubmit usually registers the message
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 6000);
@@ -106,7 +105,6 @@ function Contact() {
     }
   };
 
-  // Copy Email to Clipboard
   return (
     <section
       className={`contact-sec-container ${
@@ -134,7 +132,7 @@ function Contact() {
 
         {/* 2-Column Main Wrapper */}
         <div className="contact-sec-wrapper">
-          {/* Left Column: Animated Mail Illustration */}
+          {/* Left Column: Animated Mail & Airplane Illustration */}
           <div className="contact-sec-illustration-col reveal-left">
             <ContactIllustration />
           </div>

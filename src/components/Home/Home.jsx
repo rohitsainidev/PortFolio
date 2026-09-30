@@ -107,7 +107,7 @@ function Home() {
           {/* Call-to-Action Buttons */}
           <div className="home-buttons">
             <a
-              href="/Rohit-Kumar-Resume.pdf"
+              href="/Rohit_Saini_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="primary-btn"
@@ -124,7 +124,7 @@ function Home() {
           {/* Social Quick Links */}
           <div className="home-socials">
             <a
-              href="https://github.com/"
+              href="https://github.com/rohitsainidev"
               target="_blank"
               rel="noreferrer"
               className="social-pill"

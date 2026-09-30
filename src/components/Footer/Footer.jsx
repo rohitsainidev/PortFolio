@@ -61,7 +61,7 @@ function Footer() {
             <p className="footer-social-sub">Follow my work &amp; journey</p>
             <div className="footer-social-icons">
               <a
-                href="https://github.com"
+                href="https://github.com/rohitsainidev"
                 target="_blank"
                 rel="noreferrer"
                 className="footer-social-btn"

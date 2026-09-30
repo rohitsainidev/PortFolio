@@ -584,15 +584,36 @@ html[data-theme="light"] .pane-body strong {
   color: #0f172a;
 }
 
-html[data-theme="light"] .read-toggle-btn {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(243, 232, 255, 0.75) 100%
-  );
-  border-color: rgba(124, 58, 237, 0.28);
+html[data-theme="light"] .process-flow-container {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+html[data-theme="light"] .process-step {
+  background: #ffffff;
+  border: 1px solid rgba(124, 58, 237, 0.22);
   color: #6d28d9;
-  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.08),
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+}
+
+html[data-theme="light"] .process-step:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.32);
+}
+
+html[data-theme="light"] .process-arrow {
+  color: #a855f7;
+  opacity: 0.8;
+}
+
+html[data-theme="light"] .read-toggle-btn {
+  background: #ffffff;
+  border: 1.5px solid rgba(124, 58, 237, 0.32);
+  color: #6d28d9;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -600,76 +621,88 @@ html[data-theme="light"] .read-toggle-btn::before {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(124, 58, 237, 0.12) 50%,
+    rgba(255, 255, 255, 0.4) 50%,
     transparent 100%
   );
 }
 
-html[data-theme="light"] .read-toggle-btn .btn-icon-bubble {
-  background: rgba(124, 58, 237, 0.1);
-  border-color: rgba(124, 58, 237, 0.25);
+html[data-theme="light"] .read-toggle-btn .arrow {
   color: #7c3aed;
-  box-shadow: none;
 }
 
 html[data-theme="light"] .read-toggle-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(243, 232, 255, 0.95) 0%,
-    rgba(224, 231, 255, 0.9) 100%
-  );
-  border-color: #7c3aed;
-  color: #4c1d95;
-  box-shadow: 0 8px 24px -4px rgba(124, 58, 237, 0.25);
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 8px 24px -4px rgba(124, 58, 237, 0.42);
 }
 
-html[data-theme="light"] .read-toggle-btn:hover .btn-icon-bubble {
-  background: #7c3aed;
+html[data-theme="light"] .read-toggle-btn:hover .arrow {
   color: #ffffff;
-  border-color: #7c3aed;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
 }
 
 html[data-theme="light"] .read-toggle-btn.is-expanded {
-  background: linear-gradient(
-    135deg,
-    rgba(243, 232, 255, 0.9) 0%,
-    rgba(207, 250, 254, 0.65) 100%
-  );
+  background: #f5f3ff;
   border-color: rgba(124, 58, 237, 0.45);
+  color: #6d28d9;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.12);
 }
 
-html[data-theme="light"] .read-toggle-btn.is-expanded .btn-icon-bubble {
-  background: rgba(124, 58, 237, 0.18);
-  border-color: #7c3aed;
+html[data-theme="light"] .read-toggle-btn.is-expanded .arrow {
   color: #7c3aed;
 }
 
-html[data-theme="light"] .read-toggle-btn.is-expanded:hover .btn-icon-bubble {
-  background: #7c3aed;
+html[data-theme="light"] .read-toggle-btn.is-expanded:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  border-color: transparent;
   color: #ffffff;
+}
+
+html[data-theme="light"] .read-toggle-btn.is-expanded:hover .arrow {
+  color: #ffffff;
+}
+
+html[data-theme="light"] .education-line {
+  background: linear-gradient(180deg, #7c3aed 0%, #0284c7 100%);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25);
 }
 
 html[data-theme="light"] .timeline-node {
   background: #ffffff;
   color: #7c3aed;
+  border-color: #7c3aed;
   box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
 }
 
+html[data-theme="light"] .card-cyan .timeline-node {
+  color: #0284c7;
+  border-color: #0284c7;
+  box-shadow: 0 0 16px rgba(2, 132, 199, 0.25);
+}
+
 html[data-theme="light"] .education-box {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   border-color: rgba(15, 23, 42, 0.08);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
-html[data-theme="light"] .education-box:hover {
-  border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(168, 85, 247, 0.12);
+html[data-theme="light"] .card-purple .education-box:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+html[data-theme="light"] .card-cyan .education-box:hover {
+  border-color: rgba(2, 132, 199, 0.5);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(2, 132, 199, 0.15);
 }
 
 html[data-theme="light"] .education-number {
   color: #7c3aed;
   text-shadow: none;
+}
+
+html[data-theme="light"] .card-cyan .education-number {
+  color: #0284c7;
 }
 
 html[data-theme="light"] .badge-purple {
@@ -682,14 +715,13 @@ html[data-theme="light"] .badge-cyan {
   text-shadow: none;
 }
 
-html[data-theme="light"] .badge-pink {
-  color: #db2777;
-  text-shadow: none;
-}
-
 html[data-theme="light"] .education-year-pill {
   color: #7c3aed;
   text-shadow: none;
+}
+
+html[data-theme="light"] .card-cyan .education-year-pill {
+  color: #0284c7;
 }
 
 html[data-theme="light"] .education-box h3 {
@@ -698,6 +730,10 @@ html[data-theme="light"] .education-box h3 {
 
 html[data-theme="light"] .education-box h4 {
   color: #7c3aed;
+}
+
+html[data-theme="light"] .card-cyan .education-box h4 {
+  color: #0284c7;
 }
 
 html[data-theme="light"] .education-institute {
@@ -711,6 +747,26 @@ html[data-theme="light"] .result-label {
 html[data-theme="light"] .result-value {
   color: #0284c7;
   text-shadow: none;
+}
+
+html[data-theme="light"] .card-purple .result-value {
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .card-cyan .result-value {
+  color: #0284c7;
+}
+
+html[data-theme="light"] .education-institute-main {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .education-university {
+  color: #64748b;
+}
+
+html[data-theme="light"] .result-status {
+  color: #059669;
 }
 
 html[data-theme="light"] .education-description {
@@ -1260,4 +1316,11 @@ html[data-theme="light"] .footer-copyright {
 
 html[data-theme="light"] .footer-copyright strong {
   color: #0f172a;
+}
+
+@media (max-width: 640px) {
+  html[data-theme="light"] .about-tabs-nav {
+    background: rgba(15, 23, 42, 0.04);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
 }

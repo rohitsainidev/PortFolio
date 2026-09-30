@@ -592,10 +592,11 @@
     gap: 28px;
   }
 
+  .contact-sec-info-col,
   .contact-sec-illustration-col {
     order: 1;
     width: 100%;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   .contact-sec-form-col {

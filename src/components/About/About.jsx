@@ -5,7 +5,6 @@ import {
   FaCode,
   FaGraduationCap,
   FaSchool,
-  FaBookOpen,
   FaQuoteLeft,
   FaRocket,
   FaLaptopCode,
@@ -50,8 +49,8 @@ function About() {
     },
     {
       icon: <FaHeart />,
-      title: "Passion for UX",
-      desc: "Crafting intuitive, accessible, and delightful interactive experiences.",
+      title: "Passion for UX/UI",
+      desc: "Crafting intuitive, accessible, and delightful UI/UX experiences.",
     },
   ];
 
@@ -61,9 +60,13 @@ function About() {
       level: "ACADEMIC",
       degree: "Bachelor of Technology",
       field: "Computer Science & Engineering",
-      institute: "Punjab Technical University (PTU)",
+      institute: "MIMIT, Malout, Punjab, India",
+      university: "IKGPTU — I.K. Gujral Punjab Technical University",
       year: "2024 — 2028",
-      desc: "Pursuing B.Tech in Computer Science & Engineering under PTU, strengthening my skills in programming, web development and modern technologies through continuous learning and practical projects.",
+      scoreType: "CGPA",
+      score: "7.5 / 10",
+      status: "Currently Pursuing",
+      desc: "Pursuing a B.Tech in Computer Science & Engineering under IKGPTU, with a focus on programming, web development, software engineering, and modern technologies through hands-on projects and continuous learning.",
       icon: <FaGraduationCap />,
       badgeColor: "purple",
     },
@@ -72,24 +75,13 @@ function About() {
       level: "HIGHER SECONDARY",
       degree: "Higher Secondary Education",
       field: "Science / PCM (Physics, Chemistry, Maths)",
-      institute: "Senior Secondary School",
-      year: "2022 — 2024",
+      institute: "S.B. Inter College, Bhagatpur, Moradabad, India",
+      year: "2021 — 2023",
+      scoreType: "PERCENTAGE",
       score: "85%",
-      desc: "Developed a strong foundation in mathematics, physics and analytical thinking while building problem-solving skills, curiosity and an interest in technology.",
+      desc: "Completed Higher Secondary education with Physics, Chemistry, and Mathematics, developing a strong foundation in analytical thinking, problem-solving, and technical concepts.",
       icon: <FaSchool />,
       badgeColor: "cyan",
-    },
-    {
-      id: "03",
-      level: "SECONDARY",
-      degree: "Secondary Education",
-      field: "Secondary School Certificate",
-      institute: "High School",
-      year: "2020 — 2022",
-      score: "85%",
-      desc: "Built the early foundation of learning, discipline, curiosity and problem-solving while developing a strong interest in technology and continuous learning.",
-      icon: <FaBookOpen />,
-      badgeColor: "pink",
     },
   ];
 
@@ -189,25 +181,29 @@ function About() {
 
                 <div className={`pane-body ${expanded ? "expanded" : ""}`}>
                   <p>
-                    When I first stepped into the world of programming, I was fascinated
-                    by how lines of logic could turn an abstract thought into interactive,
-                    living software. Starting from the ground up, I immersed myself in
-                    web standards, algorithms, and full-stack development.
-                  </p>
-                  <p>
-                    Over time, I discovered that building great software goes beyond syntax.
-                    It requires deep empathy for user experience, structured thinking,
-                    and clean architectural choices. Every project I undertake is an
-                    opportunity to refine my craft, explore new paradigms, and engineer
-                    delightful digital products.
+                    I build modern, responsive, and user-focused web applications with
+                    a strong focus on clean design, functionality, and performance. My
+                    interest in web development started with understanding how websites
+                    work and grew into a passion for turning ideas into complete digital
+                    products.
                   </p>
                   {expanded && (
-                    <p className="story-expanded-text">
-                      Today, my focus is on building resilient MERN stack applications,
-                      optimizing performance, and writing scalable, maintainable code.
-                      The curiosity that drove my very first "Hello World" continues to
-                      fuel my journey every single day.
-                    </p>
+                    <div className="story-expanded-wrapper animate-expand">
+                      <p>
+                        I work with technologies including{" "}
+                        <strong>React.js, JavaScript, Node.js, Express.js, MongoDB, and MySQL</strong>
+                        , and use them to develop practical applications with intuitive
+                        interfaces and reliable functionality. Through hands-on projects and
+                        development experience, I’ve strengthened my skills in problem-solving,
+                        frontend development, backend integration, databases, and user experience.
+                      </p>
+                      <p>
+                        I’m focused on creating web solutions that are{" "}
+                        <strong>scalable, maintainable, and easy to use</strong>, while
+                        continuously improving my technical skills and staying updated with
+                        modern web development practices.
+                      </p>
+                    </div>
                   )}
                 </div>
 
@@ -218,9 +214,7 @@ function About() {
                   aria-expanded={expanded}
                 >
                   <span className="btn-label">{expanded ? "Show Less" : "Read Full Story"}</span>
-                  <span className="btn-icon-bubble">
-                    <FiChevronDown className="arrow" />
-                  </span>
+                  <FiChevronDown className="arrow" />
                 </button>
               </article>
             )}
@@ -250,16 +244,25 @@ function About() {
 
                 <div className={`pane-body ${expanded ? "expanded" : ""}`}>
                   <p>
-                    I believe that consistency beats intensity. Taking the time to understand
-                    the core problem before jumping into code ensures that every feature
-                    serves a tangible purpose and delivers true value to users.
+                    I believe good development is not just about writing code — it’s about
+                    solving problems in a <strong>simple, efficient, and thoughtful way</strong>.
                   </p>
                   {expanded && (
-                    <p className="story-expanded-text">
-                      I treat every mistake as valuable data for growth. Continuous learning,
-                      staying humble, and taking pride in craftsmanship are the cornerstones
-                      of my engineering philosophy.
-                    </p>
+                    <div className="story-expanded-wrapper animate-expand">
+                      <p>
+                        My focus is on writing <strong>clean and maintainable code</strong> while
+                        creating interfaces that feel <strong>intuitive and easy to use</strong>.
+                        I believe performance, accessibility, responsiveness, and user experience
+                        should be considered from the beginning of a project rather than treated
+                        as afterthoughts.
+                      </p>
+                      <p>
+                        I also believe that technology is constantly evolving, so{" "}
+                        <strong>continuous learning</strong> is an important part of becoming a
+                        better developer. I stay curious, explore modern tools, and keep
+                        improving through practical projects and real-world challenges.
+                      </p>
+                    </div>
                   )}
                 </div>
 
@@ -270,9 +273,7 @@ function About() {
                   aria-expanded={expanded}
                 >
                   <span className="btn-label">{expanded ? "Show Less" : "Read Philosophy"}</span>
-                  <span className="btn-icon-bubble">
-                    <FiChevronDown className="arrow" />
-                  </span>
+                  <FiChevronDown className="arrow" />
                 </button>
               </article>
             )}
@@ -294,19 +295,40 @@ function About() {
 
                 <div className={`pane-body ${expanded ? "expanded" : ""}`}>
                   <p>
-                    <strong>1. Understand & Blueprint:</strong> Deep dive into functional
-                    requirements, information hierarchy, and UI architecture before writing
-                    the first line of code.
-                  </p>
-                  <p>
-                    <strong>2. Build & Iterate:</strong> Develop clean, modular components
-                    with responsive layouts, intuitive state management, and optimized asset delivery.
+                    I approach every project by first understanding the problem, the users,
+                    and the purpose behind the product. Before jumping into development, I
+                    like to plan the structure, functionality, and overall user experience.
                   </p>
                   {expanded && (
-                    <p className="story-expanded-text">
-                      <strong>3. Polish & Optimize:</strong> Rigorous testing, micro-interactions,
-                      cross-browser verification, and performance profiling to ensure a flawless experience.
-                    </p>
+                    <div className="story-expanded-wrapper animate-expand">
+                      <p>
+                        My development process generally follows a clear path:
+                      </p>
+                      <div className="process-flow-container">
+                        <span className="process-step">Understand</span>
+                        <span className="process-arrow">→</span>
+                        <span className="process-step">Plan</span>
+                        <span className="process-arrow">→</span>
+                        <span className="process-step">Design</span>
+                        <span className="process-arrow">→</span>
+                        <span className="process-step">Develop</span>
+                        <span className="process-arrow">→</span>
+                        <span className="process-step">Test</span>
+                        <span className="process-arrow">→</span>
+                        <span className="process-step">Improve</span>
+                      </div>
+                      <p>
+                        I focus on building <strong>responsive and scalable applications</strong> with
+                        a clean structure and a polished user interface. During development, I pay
+                        attention to performance, usability, code quality, and maintainability.
+                      </p>
+                      <p>
+                        After completing the core functionality, I test the application, identify
+                        areas for improvement, and refine the experience based on practical requirements.
+                        My goal is to build products that are not only functional, but also{" "}
+                        <strong>reliable, visually polished, and enjoyable to use</strong>.
+                      </p>
+                    </div>
                   )}
                 </div>
 
@@ -317,9 +339,7 @@ function About() {
                   aria-expanded={expanded}
                 >
                   <span className="btn-label">{expanded ? "Show Less" : "Explore Methodology"}</span>
-                  <span className="btn-icon-bubble">
-                    <FiChevronDown className="arrow" />
-                  </span>
+                  <FiChevronDown className="arrow" />
                 </button>
               </article>
             )}
@@ -374,12 +394,20 @@ function About() {
 
                     <h3>{item.degree}</h3>
                     <h4>{item.field}</h4>
-                    <p className="education-institute">{item.institute}</p>
+                    <div className="education-institute-group">
+                      <p className="education-institute-main">{item.institute}</p>
+                      {item.university && (
+                        <p className="education-university">{item.university}</p>
+                      )}
+                    </div>
 
                     {item.score && (
                       <div className="education-result">
-                        <span className="result-label">PERCENTAGE</span>
+                        <span className="result-label">{item.scoreType}:</span>
                         <span className="result-value">{item.score}</span>
+                        {item.status && (
+                          <span className="result-status">· {item.status}</span>
+                        )}
                       </div>
                     )}
 
