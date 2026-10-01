@@ -81,14 +81,14 @@ function Skills() {
       title: "FRONTEND",
       accent: "#a855f7",
       skills: [
-        { name: "HTML5", icon: <FaHtml5 />, color: "#e34f26", type: "Markup", level: 95 },
-        { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6", type: "Styling", level: 90 },
-        { name: "JavaScript", icon: <FaJs />, color: "#f7df1e", type: "Programming", level: 88 },
-        { name: "React", icon: <FaReact />, color: "#61dafb", type: "UI Library", level: 88 },
-        { name: "NextJS", icon: <SiNextdotjs />, color: "#ffffff", type: "React Framework", level: 78 },
-        { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8", type: "CSS Framework", level: 86 },
-        { name: "Bootstrap", icon: <FaBootstrap />, color: "#7952b3", type: "CSS Framework", level: 82 },
-        { name: "Canva", icon: <CanvaIcon />, color: "#00c4cc", type: "Design Tool", level: 85 },
+        { name: "HTML5", icon: <FaHtml5 />, color: "#e34f26", type: "Markup" },
+        { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6", type: "Styling" },
+        { name: "JavaScript", icon: <FaJs />, color: "#f7df1e", type: "Language" },
+        { name: "React", icon: <FaReact />, color: "#61dafb", type: "UI Library" },
+        { name: "NextJS", icon: <SiNextdotjs />, color: "#ffffff", type: "Framework" },
+        { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8", type: "CSS Framework" },
+        { name: "Bootstrap", icon: <FaBootstrap />, color: "#7952b3", type: "CSS Framework" },
+        { name: "Canva", icon: <CanvaIcon />, color: "#00c4cc", type: "Design" },
       ],
     },
     {
@@ -98,11 +98,11 @@ function Skills() {
       title: "BACKEND",
       accent: "#38bdf8",
       skills: [
-        { name: "NodeJS", icon: <FaNodeJs />, color: "#68a063", type: "Runtime", level: 82 },
-        { name: "Express", icon: <SiExpress />, color: "#e2e8f0", type: "Backend Framework", level: 80 },
-        { name: "MongoDB", icon: <SiMongodb />, color: "#47a248", type: "NoSQL Database", level: 82 },
-        { name: "MySQL", icon: <SiMysql />, color: "#00758f", type: "SQL Database", level: 76 },
-        { name: "REST API", icon: <FaNetworkWired />, color: "#a855f7", type: "API Architecture", level: 86 },
+        { name: "NodeJS", icon: <FaNodeJs />, color: "#68a063", type: "Runtime" },
+        { name: "Express", icon: <SiExpress />, color: "#e2e8f0", type: "Framework" },
+        { name: "MongoDB", icon: <SiMongodb />, color: "#47a248", type: "NoSQL DB" },
+        { name: "MySQL", icon: <SiMysql />, color: "#00758f", type: "SQL Database" },
+        { name: "REST API", icon: <FaNetworkWired />, color: "#a855f7", type: "Web Services" },
       ],
     },
     {
@@ -112,13 +112,13 @@ function Skills() {
       title: "DEVOPS & TOOLS",
       accent: "#ec4899",
       skills: [
-        { name: "Git", icon: <FaGitAlt />, color: "#f05032", type: "Version Control", level: 86 },
-        { name: "GitHub", icon: <FaGithub />, color: "#ffffff", type: "Code Hosting", level: 88 },
-        { name: "Vite", icon: <SiVite />, color: "#646cff", type: "Build Tool", level: 86 },
-        { name: "Vercel", icon: <SiVercel />, color: "#ffffff", type: "Cloud Deployment", level: 82 },
-        { name: "Postman", icon: <SiPostman />, color: "#ff6c37", type: "API Testing", level: 80 },
-        { name: "VS Code", icon: <VSCodeIcon />, color: "#007acc", type: "Code Editor", level: 92 },
-        { name: "ChatGPT", icon: <OpenAIIcon />, color: "#10a37f", type: "AI Productivity", level: 90 },
+        { name: "Git", icon: <FaGitAlt />, color: "#f05032", type: "Version Control" },
+        { name: "GitHub", icon: <FaGithub />, color: "#ffffff", type: "Code Hosting" },
+        { name: "Vite", icon: <SiVite />, color: "#646cff", type: "Build Tool" },
+        { name: "Vercel", icon: <SiVercel />, color: "#ffffff", type: "Deployment" },
+        { name: "Postman", icon: <SiPostman />, color: "#ff6c37", type: "API Testing" },
+        { name: "VS Code", icon: <VSCodeIcon />, color: "#007acc", type: "Editor" },
+        { name: "ChatGPT", icon: <OpenAIIcon />, color: "#10a37f", type: "AI Tool" },
       ],
     },
   ];
@@ -198,7 +198,7 @@ function Skills() {
                 <div className="skills-sec-card-icon">{cat.categoryIcon}</div>
                 <div className="skills-sec-card-heading">
                   <h3>{cat.title}</h3>
-                  <span>{cat.skills.length} TECHNOLOGIES</span>
+                  <span className="skills-sec-card-badge">{cat.skills.length} Technologies</span>
                 </div>
               </div>
 
@@ -207,7 +207,7 @@ function Skills() {
                 <span />
               </div>
 
-              {/* Modern Tech Chips Grid (2-Column Balanced Layout) */}
+              {/* Clean, Borderless & Background-free Tech Items */}
               <div className={`skills-sec-chips-grid ${activeFilter !== "all" ? "skills-chips-expanded" : ""}`}>
                 {cat.skills.map((skill) => (
                   <div
@@ -224,22 +224,8 @@ function Skills() {
                     </div>
 
                     <div className="skills-chip-body">
-                      <div className="skills-chip-top">
-                        <strong className="skills-chip-name">{skill.name}</strong>
-                        <span className="skills-chip-percent">{skill.level}%</span>
-                      </div>
+                      <strong className="skills-chip-name">{skill.name}</strong>
                       <span className="skills-chip-type">{skill.type}</span>
-
-                      {/* Sleek Integrated Micro-Meter */}
-                      <div className="skills-chip-meter-track">
-                        <span
-                          className="skills-chip-meter-fill"
-                          style={{
-                            "--chip-fill": `${skill.level}%`,
-                            "--chip-color": skill.color,
-                          }}
-                        />
-                      </div>
                     </div>
                   </div>
                 ))}

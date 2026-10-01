@@ -127,17 +127,25 @@
   animation: logoDarkShimmer 3s ease infinite;
 }
 
-/* NAVIGATION LINKS PILL */
+/* NAVIGATION LINKS - Clean & Modern (No Background Box) */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
+  gap: 4px;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 50px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+/* Mobile Drawer specific elements - hidden on desktop */
+.mobile-backdrop,
+.mobile-drawer-top {
+  display: none;
+}
+
+.mobile-drawer-items {
+  display: contents;
 }
 
 /* NAV ITEM */
@@ -145,109 +153,67 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 15px;
-
+  gap: 6px;
+  padding: 8px 14px;
   color: var(--nav-text);
   text-decoration: none;
   font-size: 13.5px;
   font-weight: 500;
-  border-radius: 50px;
-
-  transition: all 0.25s ease;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.2s ease;
 }
 
 .nav-item svg {
   color: #94a3b8;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 /* NAV ITEM HOVER */
 .nav-item:hover {
   color: var(--nav-text-hover);
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.2),
-    rgba(56, 189, 248, 0.08)
-  );
-  transform: translateY(-1.5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.045);
 }
 
 .nav-item:hover svg {
   color: var(--nav-purple-light);
   transform: scale(1.12);
-  filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.8));
-}
-
-/* Hover Underline */
-.nav-item::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 2px;
-  width: 0;
-  height: 2px;
-  border-radius: 50px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--nav-purple),
-    var(--nav-cyan),
-    transparent
-  );
-  transform: translateX(-50%);
-  opacity: 0;
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
-  transition: width 0.3s ease, opacity 0.3s ease;
-}
-
-.nav-item:hover::after {
-  width: 24px;
-  opacity: 1;
 }
 
 /* NAVBAR ACTIONS & THEME TOGGLE */
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .theme-toggle-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.15) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  color: #f1f5f9;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none !important;
+  background: transparent !important;
+  color: #cbd5e1;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  overflow: visible;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
 }
 
 .theme-toggle-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.3) 0%,
-    rgba(56, 189, 248, 0.15) 100%
-  );
-  border-color: rgba(168, 85, 247, 0.65);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.35);
+  transform: scale(1.12);
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff;
 }
 
 .theme-toggle-icon {
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
 }
 
 .sun-icon {
@@ -261,110 +227,113 @@
 }
 
 .theme-toggle-btn:hover .theme-toggle-icon {
-  transform: rotate(30deg) scale(1.1);
+  transform: rotate(20deg) scale(1.15);
 }
 
-/* GITHUB BUTTON */
+/* GITHUB BUTTON - 100% Box-Free & Clean */
 .github-btn {
   position: relative;
-  overflow: hidden;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-
+  gap: 7px;
+  padding: 8px 12px;
   color: #f1f5f9;
   text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 600;
-
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 50px;
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.15) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  border: none !important;
+  border-radius: 8px;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
 }
 
-/* GitHub shine */
 .github-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 70%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transform: skewX(-20deg);
-  transition: left 0.6s ease;
+  display: none !important;
 }
 
 .github-btn:hover {
-  color: #ffffff;
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.3) 0%,
-    rgba(56, 189, 248, 0.15) 100%
-  );
-  border-color: rgba(168, 85, 247, 0.65);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.35);
-  transform: translateY(-2px);
-}
-
-.github-btn:hover::before {
-  left: 130%;
+  color: #c084fc;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
 }
 
 .github-btn svg {
-  color: #ffffff;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  color: #cbd5e1;
+  transition: transform 0.25s ease, color 0.2s ease;
 }
 
 .github-btn:hover svg {
+  color: #c084fc;
   transform: rotate(-8deg) scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.8));
 }
 
-.github-arrow {
-  color: var(--nav-purple-light);
-  font-size: 13px;
-  transition: transform 0.3s ease;
-}
-
-.github-btn:hover .github-arrow {
-  transform: translate(2px, -2px);
-}
-
-/* MOBILE BUTTON */
+/* SMOOTH ANIMATED 3-LINE TO CROSS MOBILE TOGGLE */
 .menu-btn {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: none !important;
+  background: transparent !important;
   cursor: pointer;
-  transition: all 0.25s ease;
+  box-shadow: none !important;
+  user-select: none;
+  transition: transform 0.2s ease;
 }
 
-.menu-btn:hover,
-.menu-btn.active {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
+.hamburger-box {
+  width: 22px;
+  height: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #f1f5f9;
+  border-radius: 999px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease,
+              background-color 0.2s ease,
+              width 0.2s ease;
+  transform-origin: center;
+}
+
+.hamburger-line.line-1,
+.hamburger-line.line-2,
+.hamburger-line.line-3 {
+  width: 22px;
+}
+
+/* Hover effect */
+.menu-btn:hover .hamburger-line {
+  background-color: #c084fc;
+}
+
+/* Active State: 3 lines smoothly morph into a precision Cross (X) */
+.menu-btn.active .hamburger-line.line-1 {
+  transform: translateY(7px) rotate(45deg);
+  background-color: #c084fc;
+}
+
+.menu-btn.active .hamburger-line.line-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-btn.active .hamburger-line.line-3 {
+  transform: translateY(-7px) rotate(-45deg);
+  background-color: #c084fc;
 }
 
 /* RESPONSIVE (TABLET & MOBILE) */
@@ -388,36 +357,128 @@
     padding: 0 20px;
   }
 
-  /* Fully Opaque Mobile Menu Overlay */
-  .nav-links {
-    display: none;
+  /* LinkedIn-Style Slide-In Mobile Drawer */
+  .mobile-backdrop {
+    display: block;
     position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 290px;
+    max-width: 82vw;
+    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     align-items: stretch;
-    background: rgba(8, 9, 13, 0.98);
+    justify-content: flex-start;
+    background: #0b0d19 !important;
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    padding: 20px;
-    gap: 10px;
+    padding: 24px 20px;
+    gap: 0;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.25);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    border-left: 1px solid rgba(168, 85, 247, 0.2);
+    box-shadow: -14px 0 45px rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+    transform: translateX(105%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
   }
 
   .nav-links.mobile-open {
-    display: flex;
+    transform: translateX(0);
   }
 
-  .nav-item {
-    padding: 12px 18px;
-    font-size: 15px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  /* Drawer Top Bar */
+  .mobile-drawer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-drawer-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #94a3b8;
+  }
+
+  .mobile-drawer-close {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-drawer-close:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Drawer Nav Items - Clean & Box-Free */
+  .mobile-drawer-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .mobile-drawer-items .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #f1f5f9;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-drawer-items .nav-item svg {
+    color: #a855f7;
+    font-size: 19px;
+  }
+
+  .mobile-drawer-items .nav-item:hover,
+  .mobile-drawer-items .nav-item:active {
+    background: rgba(168, 85, 247, 0.12) !important;
+    color: #ffffff;
+    transform: translateX(4px);
   }
 
   .github-btn {

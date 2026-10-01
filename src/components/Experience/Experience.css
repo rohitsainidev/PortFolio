@@ -1,0 +1,670 @@
+/* =========================================================
+   EXPERIENCE SECTION STYLING (CLEAN & PROFESSIONAL CARD BOX)
+   ========================================================= */
+
+.experience-sec {
+  position: relative;
+  width: 100%;
+  padding: 100px 0 80px;
+  overflow: hidden;
+  color: #f1f5f9;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.experience-sec * {
+  box-sizing: border-box;
+}
+
+/* Background Ambient Lighting Glows */
+.exp-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.exp-glow-1 {
+  width: 500px;
+  height: 500px;
+  left: -180px;
+  top: 15%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+  filter: blur(140px);
+}
+
+.exp-glow-2 {
+  width: 500px;
+  height: 500px;
+  right: -180px;
+  bottom: 10%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  filter: blur(140px);
+}
+
+.exp-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.exp-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.exp-badge {
+  display: inline-block;
+  color: #c084fc;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
+}
+
+.exp-title {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.exp-subtitle {
+  margin: 14px auto 0;
+  max-width: 620px;
+  color: #94a3b8;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FEATURED EXPERIENCE CARDS CONTAINER
+   ========================================================= */
+
+.exp-cards-wrapper,
+.exp-single-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.exp-card-featured {
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 36px 42px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-card-featured:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(168, 85, 247, 0.12);
+}
+
+/* Card Header */
+.exp-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.exp-company-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.exp-role-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.exp-role-title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.exp-company-name-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.exp-icon-muted {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.exp-company-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #c084fc;
+}
+
+/* Meta Details: Location, Period, Type (Modern Pill Chips) */
+.exp-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exp-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #cbd5e1;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.exp-meta-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.exp-meta-icon {
+  flex-shrink: 0;
+}
+
+.exp-meta-icon.icon-location {
+  color: #38bdf8;
+}
+
+.exp-meta-icon.icon-period {
+  color: #a855f7;
+}
+
+.exp-meta-icon.icon-type {
+  color: #f472b6;
+}
+
+/* Summary Text */
+.exp-summary-text {
+  margin: 18px 0 16px;
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #cbd5e1;
+}
+
+/* Key Points List */
+.exp-points-container {
+  margin: 0 0 14px;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.exp-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exp-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.reveal-fade-in {
+  animation: expFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes expFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.point-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a855f7;
+  margin-top: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+}
+
+.point-text {
+  font-size: 14px;
+  line-height: 1.62;
+  color: #cbd5e1;
+  word-break: break-word;
+}
+
+.point-title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Read More / Show Less Button */
+.exp-read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #c084fc;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.22s ease;
+}
+
+.exp-read-more-btn .arrow {
+  font-size: 15px;
+  color: currentColor;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+}
+
+.exp-read-more-btn:hover {
+  color: #d8b4fe;
+  transform: translateX(3px);
+}
+
+.exp-read-more-btn.is-expanded {
+  color: #38bdf8;
+}
+
+.exp-read-more-btn.is-expanded .arrow {
+  transform: rotate(180deg);
+}
+
+.exp-read-more-btn.is-expanded:hover {
+  color: #7dd3fc;
+}
+
+.exp-read-more-btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   LIGHT THEME SUPPORT ([data-theme="light"])
+   ========================================================= */
+
+html[data-theme="light"] .experience-sec {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .exp-badge {
+  color: #7c3aed;
+  text-shadow: none;
+}
+
+html[data-theme="light"] .exp-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .exp-subtitle {
+  color: #475569;
+}
+
+html[data-theme="light"] .exp-card-featured {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="light"] .exp-card-featured:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08), 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+html[data-theme="light"] .exp-card-header {
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .exp-role-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .exp-company-name {
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .exp-icon-muted {
+  color: #64748b;
+}
+
+html[data-theme="light"] .exp-meta-item {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #475569;
+}
+
+html[data-theme="light"] .exp-meta-item:hover {
+  background: rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+html[data-theme="light"] .exp-meta-icon.icon-location {
+  color: #0284c7;
+}
+
+html[data-theme="light"] .exp-meta-icon.icon-period {
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .exp-meta-icon.icon-type {
+  color: #db2777;
+}
+
+html[data-theme="light"] .exp-summary-text {
+  color: #334155;
+}
+
+html[data-theme="light"] .point-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .point-text {
+  color: #334155;
+}
+
+html[data-theme="light"] .point-bullet {
+  background: #7c3aed;
+  box-shadow: 0 0 6px rgba(124, 58, 237, 0.4);
+}
+
+html[data-theme="light"] .exp-read-more-btn {
+  color: #7c3aed !important;
+}
+
+html[data-theme="light"] .exp-read-more-btn:hover {
+  color: #6d28d9 !important;
+}
+
+html[data-theme="light"] .exp-read-more-btn.is-expanded {
+  color: #0284c7 !important;
+}
+
+html[data-theme="light"] .exp-read-more-btn.is-expanded:hover {
+  color: #0369a1 !important;
+}
+
+/* =========================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .experience-sec {
+    padding: 80px 0 60px;
+  }
+
+  .exp-card-featured {
+    padding: 30px 32px;
+  }
+
+  .exp-cards-wrapper,
+  .exp-single-wrapper {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-sec {
+    padding: 65px 0 45px;
+  }
+
+  .exp-container {
+    padding: 0 20px;
+  }
+
+  .exp-glow-1,
+  .exp-glow-2 {
+    width: 280px;
+    height: 280px;
+    filter: blur(90px);
+  }
+
+  .exp-header {
+    margin-bottom: 28px;
+  }
+
+  .exp-title {
+    font-size: clamp(26px, 5.5vw, 34px);
+  }
+
+  .exp-subtitle {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .exp-cards-wrapper,
+  .exp-single-wrapper {
+    gap: 20px;
+  }
+
+  .exp-card-featured {
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .exp-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  .exp-role-title {
+    font-size: 19.5px;
+  }
+
+  .exp-company-name {
+    font-size: 14px;
+  }
+
+  .exp-meta-row {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .exp-meta-item {
+    font-size: 12px;
+    padding: 3.5px 9px;
+  }
+
+  .exp-summary-text {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 14px 0 12px;
+  }
+
+  .exp-points-container {
+    margin-bottom: 12px;
+  }
+
+  .exp-points-list {
+    gap: 10px;
+  }
+
+  .exp-point-item {
+    gap: 10px;
+  }
+
+  .point-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-sec {
+    padding: 48px 0 32px;
+  }
+
+  .exp-container {
+    padding: 0 14px;
+  }
+
+  .exp-header {
+    margin-bottom: 22px;
+  }
+
+  .exp-badge {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .exp-title {
+    font-size: 25px;
+    letter-spacing: -0.5px;
+  }
+
+  .exp-subtitle {
+    font-size: 13px;
+    line-height: 1.55;
+    margin-top: 8px;
+  }
+
+  .exp-cards-wrapper,
+  .exp-single-wrapper {
+    gap: 16px;
+  }
+
+  .exp-card-featured {
+    padding: 18px 15px;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .exp-card-header {
+    gap: 10px;
+    padding-bottom: 12px;
+  }
+
+  .exp-role-title {
+    font-size: 17.5px;
+    line-height: 1.3;
+  }
+
+  .exp-company-name-row {
+    margin-top: 4px;
+  }
+
+  .exp-company-name {
+    font-size: 13px;
+  }
+
+  .exp-meta-row {
+    gap: 6px;
+  }
+
+  .exp-meta-item {
+    font-size: 11.5px;
+    padding: 3px 8px;
+    gap: 5px;
+  }
+
+  .exp-summary-text {
+    font-size: 13px;
+    line-height: 1.58;
+    margin: 12px 0 10px;
+  }
+
+  .exp-points-container {
+    margin-bottom: 10px;
+  }
+
+  .exp-points-list {
+    gap: 8px;
+  }
+
+  .exp-point-item {
+    gap: 9px;
+  }
+
+  .point-bullet {
+    width: 5px;
+    height: 5px;
+    margin-top: 7px;
+  }
+
+  .point-text {
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+
+  .point-title {
+    font-size: 12.5px;
+  }
+
+  .exp-read-more-btn {
+    font-size: 12.5px;
+    padding: 6px 0;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 360px) {
+  .exp-container {
+    padding: 0 10px;
+  }
+
+  .exp-card-featured {
+    padding: 16px 12px;
+  }
+
+  .exp-role-title {
+    font-size: 16px;
+  }
+
+  .exp-meta-item {
+    font-size: 11px;
+    padding: 2.5px 7px;
+  }
+}

@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Home,
   User,
   Code2,
   FolderKanban,
+  Briefcase,
   Mail,
-  Menu,
-  X,
   Sun,
   Moon,
 } from "lucide-react";
@@ -30,6 +29,18 @@ function GithubIcon() {
 function Navbar({ theme = "dark", toggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     {
       name: "Home",
@@ -52,6 +63,11 @@ function Navbar({ theme = "dark", toggleTheme }) {
       icon: FolderKanban,
     },
     {
+      name: "Experience",
+      href: "#experience",
+      icon: Briefcase,
+    },
+    {
       name: "Contact",
       href: "#contact",
       icon: Mail,
@@ -60,6 +76,13 @@ function Navbar({ theme = "dark", toggleTheme }) {
 
   return (
     <header className="navbar">
+      {/* LinkedIn-style Mobile Backdrop Overlay */}
+      <div
+        className={`mobile-backdrop ${mobileMenuOpen ? "active" : ""}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className="navbar-container">
         {/* Logo with colorful code brackets */}
         <a href="#home" className="logo" aria-label="Rohit Portfolio Home">
@@ -69,23 +92,41 @@ function Navbar({ theme = "dark", toggleTheme }) {
           <span className="logo-bracket close-bracket">&gt;</span>
         </a>
 
-        {/* Navigation */}
-        <nav className={`nav-links ${mobileMenuOpen ? "mobile-open" : ""}`}>
-          {navItems.map((item) => {
-            const Icon = item.icon;
+        {/* Navigation Drawer (LinkedIn App Style) */}
+        <nav
+          className={`nav-links ${mobileMenuOpen ? "mobile-open" : ""}`}
+          aria-label="Navigation Menu"
+        >
+          {/* Drawer Top Bar */}
+          <div className="mobile-drawer-top">
+            <span className="mobile-drawer-title">Menu</span>
+            <button
+              type="button"
+              className="mobile-drawer-close"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close navigation drawer"
+            >
+              ✕
+            </button>
+          </div>
 
-            return (
-              <a
-                href={item.href}
-                className="nav-item"
-                key={item.name}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Icon size={16} strokeWidth={1.9} />
-                <span>{item.name}</span>
-              </a>
-            );
-          })}
+          <div className="mobile-drawer-items">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <a
+                  href={item.href}
+                  className="nav-item"
+                  key={item.name}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Icon size={18} strokeWidth={1.9} />
+                  <span>{item.name}</span>
+                </a>
+              );
+            })}
+          </div>
         </nav>
 
         {/* Actions (Theme Switcher + GitHub + Mobile Hamburger) */}
@@ -118,17 +159,21 @@ function Navbar({ theme = "dark", toggleTheme }) {
           >
             <GithubIcon />
             <span>GitHub</span>
-            <span className="github-arrow">↗</span>
           </a>
 
-          {/* Mobile Toggle */}
+          {/* Animated 3-Line to Cross Mobile Toggle */}
           <button
             type="button"
             className={`menu-btn ${mobileMenuOpen ? "active" : ""}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="hamburger-box">
+              <span className="hamburger-line line-1" />
+              <span className="hamburger-line line-2" />
+              <span className="hamburger-line line-3" />
+            </span>
           </button>
         </div>
       </div>
