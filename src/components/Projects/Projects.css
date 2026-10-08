@@ -89,25 +89,25 @@
 /* 3 FEATURED PROJECTS GRID (Single Row on Desktop) */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
   width: 100%;
   margin-top: 45px;
 }
 
-/* CARD DESIGN (Framed Mockup, Rounded Corners & Dedicated Tech Box) */
+/* CARD DESIGN (Compact & Professional) */
 .projects-sec-card {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-radius: 24px;
+  border-radius: 20px;
   background: rgba(14, 17, 30, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
-  padding: 22px;
+  padding: 18px;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease,
               box-shadow 0.35s ease;
@@ -125,7 +125,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 16px;
+  border-radius: 13px;
   overflow: hidden;
   background: #080a14;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -148,93 +148,28 @@
   transform: scale(1.04);
 }
 
-/* Hover Overlay */
-.projects-sec-img-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 12, 22, 0.65);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.projects-sec-card:hover .projects-sec-img-overlay {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.projects-sec-preview-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 50px;
-  background: rgba(168, 85, 247, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 12.5px;
-  font-weight: 600;
+.projects-sec-mockup-frame {
+  display: block;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
-  transition: transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
 }
 
-.projects-sec-preview-btn:hover {
-  background: #a855f7;
-  transform: scale(1.05);
-}
-
-.projects-sec-preview-btn.code-btn {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-}
-
-.projects-sec-preview-btn.code-btn:hover {
-  background: rgba(30, 41, 59, 0.95);
-  color: #c084fc;
-}
-
-/* CONTENT BODY (Left-aligned matching reference design) */
+/* CONTENT BODY */
 .projects-sec-card-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-top: 18px;
-  flex: 1;
+  padding-top: 14px;
   width: 100%;
 }
 
-.projects-sec-tag-row {
-  margin-bottom: 8px;
-}
-
-.projects-sec-type-badge {
-  display: inline-block;
-  padding: 3px 12px;
-  border-radius: 9999px;
-  background: rgba(168, 85, 247, 0.14);
-  border: 1px solid rgba(168, 85, 247, 0.28);
-  color: #c084fc;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-
 .projects-sec-card-title {
-  margin: 0 0 10px;
-  font-size: 26px;
-  font-weight: 800;
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 700;
   color: #ffffff;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.4px;
   line-height: 1.25;
   transition: color 0.25s ease;
 }
@@ -244,26 +179,20 @@
 }
 
 .projects-sec-card-desc {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   color: #94a3b8;
-  font-size: 14px;
-  line-height: 1.65;
-  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.6;
 }
 
-/* TECH STACK ROUNDED CONTAINER BOX (Exact match to reference) */
-.projects-sec-tech-box {
+/* TECH STACK ROW (Clean inline badges without background box) */
+.projects-sec-tech-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 8px 14px;
   width: 100%;
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  margin-top: auto;
-  margin-bottom: 16px;
+  padding-top: 2px;
 }
 
 .projects-sec-tech-item {
@@ -272,7 +201,16 @@
   gap: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: #cbd5e1;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.projects-sec-tech-item:hover {
+  color: #f1f5f9;
+  transform: translateY(-1px);
 }
 
 .projects-sec-tech-item .tech-item-icon {
@@ -290,52 +228,62 @@
 .tech-icon-vite { color: #a855f7 !important; }
 .tech-icon-chart { color: #f43f5e !important; }
 .tech-icon-api, .tech-icon-css { color: #fbbf24 !important; }
+.tech-icon-js { color: #f7df1e !important; }
+.tech-icon-html { color: #ea580c !important; }
+.tech-icon-css3 { color: #38bdf8 !important; }
 
-/* ACTION BUTTONS ROW */
-.projects-sec-actions {
+/* CLEAN & CENTERED ACTION BUTTONS (No Background Box, No Borders) */
+.projects-sec-links-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 28px;
   width: 100%;
-  padding-top: 4px;
+  margin-top: 18px;
+  padding-top: 6px;
+  border: none;
 }
 
-.projects-sec-action-btn {
+.projects-clean-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  flex: 1;
-  padding: 9px 14px;
-  border-radius: 10px;
-  font-size: 13px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 4px 6px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.22s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.projects-sec-action-btn.primary {
-  background: rgba(168, 85, 247, 0.16);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  color: #d8b4fe;
+/* Live Preview */
+.projects-clean-btn.live-btn {
+  color: #c084fc;
 }
 
-.projects-sec-action-btn.primary:hover {
-  background: rgba(168, 85, 247, 0.28);
-  border-color: #a855f7;
-  color: #ffffff;
+.projects-clean-btn.live-btn:hover {
+  color: #e9d5ff;
   transform: translateY(-2px);
 }
 
-.projects-sec-action-btn.secondary {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.projects-clean-btn.live-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.projects-clean-btn.live-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Code */
+.projects-clean-btn.code-btn {
   color: #94a3b8;
 }
 
-.projects-sec-action-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.16);
+.projects-clean-btn.code-btn:hover {
   color: #ffffff;
   transform: translateY(-2px);
 }
@@ -449,35 +397,40 @@ html[data-theme="light"] .projects-sec-card-desc {
   color: #475569;
 }
 
-html[data-theme="light"] .projects-sec-tech-box {
-  background: #f8fafc;
-  border-color: rgba(15, 23, 42, 0.08);
-}
-
 html[data-theme="light"] .projects-sec-tech-item {
-  color: #334155;
-}
-
-html[data-theme="light"] .projects-sec-action-btn.primary {
-  background: rgba(124, 58, 237, 0.08);
-  border-color: rgba(124, 58, 237, 0.25);
-  color: #7c3aed;
-}
-
-html[data-theme="light"] .projects-sec-action-btn.primary:hover {
-  background: #7c3aed;
-  border-color: #7c3aed;
-  color: #ffffff;
-}
-
-html[data-theme="light"] .projects-sec-action-btn.secondary {
-  background: #f1f5f9;
-  border-color: rgba(15, 23, 42, 0.08);
+  background: transparent;
+  border: none;
   color: #475569;
 }
 
-html[data-theme="light"] .projects-sec-action-btn.secondary:hover {
-  background: #e2e8f0;
+html[data-theme="light"] .projects-sec-tech-item:hover {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .projects-sec-links-row {
+  border: none;
+}
+
+html[data-theme="light"] .projects-clean-btn.live-btn {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .projects-clean-btn.live-btn:hover {
+  background: transparent;
+  color: #5b21b6;
+}
+
+html[data-theme="light"] .projects-clean-btn.code-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+}
+
+html[data-theme="light"] .projects-clean-btn.code-btn:hover {
+  background: transparent;
   color: #0f172a;
 }
 
@@ -568,12 +521,13 @@ html[data-theme="light"] .projects-sec-cta-btn:hover {
     font-size: 13.5px;
   }
 
-  .projects-sec-tech-box {
-    padding: 10px 14px;
-    gap: 12px;
+  .projects-sec-tech-row {
+    gap: 6px 8px;
+    padding-top: 4px;
   }
 
   .projects-sec-tech-item {
     font-size: 12px;
+    padding: 0;
   }
 }

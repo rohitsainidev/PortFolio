@@ -77,7 +77,7 @@ function About() {
       institute: "S.B. Inter College, Bhagatpur, Moradabad, India",
       year: "2021 — 2023",
       scoreType: "PERCENTAGE",
-      score: "85%",
+      score: "70.1%",
       desc: "Completed Higher Secondary education with Physics, Chemistry, and Mathematics, developing a strong foundation in analytical thinking, problem-solving, and technical concepts.",
       icon: <FaSchool />,
       badgeColor: "cyan",

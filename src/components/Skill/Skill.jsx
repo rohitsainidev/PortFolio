@@ -23,7 +23,6 @@ import {
   SiVercel,
   SiPostman,
 } from "react-icons/si";
-import { FiLayers } from "react-icons/fi";
 import "./Skill.css";
 
 // Official Canva Logo
@@ -49,7 +48,6 @@ const OpenAIIcon = () => (
 
 function Skills() {
   const skillsRef = useRef(null);
-  const [activeFilter, setActiveFilter] = useState("all");
   const [isSectionVisible, setIsSectionVisible] = useState(false);
 
   useEffect(() => {
@@ -123,11 +121,6 @@ function Skills() {
     },
   ];
 
-  const filteredCategories =
-    activeFilter === "all"
-      ? skillCategories
-      : skillCategories.filter((c) => c.id === activeFilter);
-
   return (
     <section
       className={`skills-sec-container ${isSectionVisible ? "skills-sec-visible" : ""}`}
@@ -149,43 +142,11 @@ function Skills() {
             Technologies and tools I use to build modern, responsive, and
             high-performance digital experiences.
           </p>
-
-          {/* Filter Pills */}
-          <div className="skills-filter-pills">
-            <button
-              className={`filter-btn ${activeFilter === "all" ? "active" : ""}`}
-              onClick={() => setActiveFilter("all")}
-            >
-              <FiLayers size={14} />
-              <span>All ({skillCategories.reduce((acc, c) => acc + c.skills.length, 0)})</span>
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === "frontend" ? "active" : ""}`}
-              onClick={() => setActiveFilter("frontend")}
-            >
-              <FaCode size={14} />
-              <span>Frontend ({skillCategories.find((c) => c.id === "frontend")?.skills.length})</span>
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === "backend" ? "active" : ""}`}
-              onClick={() => setActiveFilter("backend")}
-            >
-              <FaServer size={14} />
-              <span>Backend ({skillCategories.find((c) => c.id === "backend")?.skills.length})</span>
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === "devops" ? "active" : ""}`}
-              onClick={() => setActiveFilter("devops")}
-            >
-              <FaWrench size={14} />
-              <span>DevOps &amp; Tools ({skillCategories.find((c) => c.id === "devops")?.skills.length})</span>
-            </button>
-          </div>
         </div>
 
         {/* Skills Grid */}
-        <div className={`skills-sec-grid filter-${activeFilter}`}>
-          {filteredCategories.map((cat) => (
+        <div className="skills-sec-grid">
+          {skillCategories.map((cat) => (
             <article
               key={cat.id}
               className={`skills-sec-card ${cat.themeClass}`}
@@ -198,7 +159,6 @@ function Skills() {
                 <div className="skills-sec-card-icon">{cat.categoryIcon}</div>
                 <div className="skills-sec-card-heading">
                   <h3>{cat.title}</h3>
-                  <span className="skills-sec-card-badge">{cat.skills.length} Technologies</span>
                 </div>
               </div>
 
@@ -208,7 +168,7 @@ function Skills() {
               </div>
 
               {/* Clean, Borderless & Background-free Tech Items */}
-              <div className={`skills-sec-chips-grid ${activeFilter !== "all" ? "skills-chips-expanded" : ""}`}>
+              <div className="skills-sec-chips-grid">
                 {cat.skills.map((skill) => (
                   <div
                     className="skills-chip-item"

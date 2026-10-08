@@ -44,9 +44,9 @@ function Footer() {
           <div className="footer-contact-col">
             <h4 className="footer-col-title">Get In Touch</h4>
             <div className="footer-contact-items">
-              <a href="mailto:darkbyte225@gmail.com" className="footer-contact-link">
+              <a href="mailto:rohitsaini123du@gmail.com" className="footer-contact-link">
                 <FiMail className="footer-contact-icon" />
-                <span>darkbyte225@gmail.com</span>
+                <span>rohitsaini123du@gmail.com</span>
               </a>
               <div className="footer-contact-link non-clickable">
                 <FiMapPin className="footer-contact-icon" />

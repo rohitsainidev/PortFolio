@@ -1,11 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  FaEnvelope,
   FaPaperPlane,
   FaCheck,
-  FaUser,
-  FaPenNib,
-  FaMessage,
 } from "react-icons/fa6";
 import ContactIllustration from "./ContactIllustration";
 import "./Contact.css";
@@ -26,7 +22,7 @@ function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const recipientEmail = "darkbyte225@gmail.com";
+  const recipientEmail = "rohitsaini123du@gmail.com";
 
   // Section Observer
   useEffect(() => {
@@ -141,8 +137,8 @@ function Contact() {
           <div className="contact-sec-form-col reveal-right">
             <form className="contact-sec-form" onSubmit={handleSubmit}>
               <div className="contact-sec-form-header">
-                <h3>Send a Direct Message</h3>
-                <p>Fill out the form below and I&apos;ll get back to you soon.</p>
+                <h3>Send a Message</h3>
+                <p>Have an idea or project to discuss? Let&apos;s talk.</p>
               </div>
 
               {/* Success Alert Banner */}
@@ -151,7 +147,7 @@ function Contact() {
                   <FaCheck />
                   <span>
                     Thank you! Your message has been sent successfully. I will get
-                    back to you shortly at your email.
+                    back to you shortly.
                   </span>
                 </div>
               )}
@@ -167,69 +163,57 @@ function Contact() {
               <div className="contact-sec-form-row">
                 <div className="contact-sec-input-group">
                   <label htmlFor="contact-name">Your Name</label>
-                  <div className="contact-sec-input-wrap">
-                    <FaUser className="contact-sec-input-icon" />
-                    <input
-                      type="text"
-                      id="contact-name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Alex Johnson"
-                      required
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                  />
                 </div>
 
                 <div className="contact-sec-input-group">
                   <label htmlFor="contact-email">Your Email</label>
-                  <div className="contact-sec-input-wrap">
-                    <FaEnvelope className="contact-sec-input-icon" />
-                    <input
-                      type="email"
-                      id="contact-email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="e.g. alex@company.com"
-                      required
-                    />
-                  </div>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="name@company.com"
+                    required
+                  />
                 </div>
               </div>
 
               {/* Subject Field */}
               <div className="contact-sec-input-group">
                 <label htmlFor="contact-subject">Subject</label>
-                <div className="contact-sec-input-wrap">
-                  <FaPenNib className="contact-sec-input-icon" />
-                  <input
-                    type="text"
-                    id="contact-subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="e.g. Full-Stack Project Inquiry"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="contact-subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Project Inquiry / Collaboration"
+                  required
+                />
               </div>
 
               {/* Message Field */}
               <div className="contact-sec-input-group">
                 <label htmlFor="contact-message">Your Message</label>
-                <div className="contact-sec-input-wrap textarea-wrap">
-                  <FaMessage className="contact-sec-input-icon" />
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Describe your project idea, timeline, or message..."
-                    required
-                  />
-                </div>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your project, timeline, or requirements..."
+                  required
+                />
               </div>
 
               {/* Submit Button */}
@@ -245,7 +229,7 @@ function Contact() {
                 ) : (
                   <>
                     <span>Send Message</span>
-                    <FaPaperPlane />
+                    <FaPaperPlane size={13} />
                   </>
                 )}
               </button>

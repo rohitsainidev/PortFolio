@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Background Gradient: Electric Violet to Vibrant Indigo -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333ea"/>
+      <stop offset="45%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <!-- Subtle Top-to-Bottom Light Sheen -->
+    <linearGradient id="sheenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Drop Shadow for depth -->
+    <filter id="glyphShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Base Squircle -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Top Highlight / Sheen -->
+  <rect x="2" y="2" width="60" height="30" rx="16" fill="url(#sheenGrad)"/>
+
+  <!-- Crisp Outer Ring -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5"/>
+
+  <!-- Clean, Modern, Bold "R" Monogram -->
+  <path d="M 19 16 H 34 C 41 16 45 19.8 45 25.8 C 45 30.8 41.5 34.2 36.5 35.2 L 45 48 H 37.2 L 29.8 36.8 H 26.5 V 48 H 19 Z M 26.5 22.2 V 30.8 H 33.5 C 37 30.8 38.6 29 38.6 26.5 C 38.6 24 37 22.2 33.5 22.2 Z" fill="#ffffff" filter="url(#glyphShadow)"/>
+</svg>

@@ -10,7 +10,9 @@ import {
   SiExpress,
   SiMongodb,
   SiVite,
-  SiChartdotjs,
+  SiJavascript,
+  SiHtml5,
+  SiCss,
 } from "react-icons/si";
 import "./Projects.css";
 
@@ -70,7 +72,7 @@ function Projects() {
     },
     {
       id: 2,
-      title: "TourUp",
+      title: "Uttar Pradesh Unveiled",
       category: "Travel & Tourism",
       image: "/tourup.png",
       description:
@@ -86,20 +88,36 @@ function Projects() {
     },
     {
       id: 3,
-      title: "CryptoVault",
-      category: "Web3 & Analytics",
-      image:
-        "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=900&auto=format&fit=crop&q=80",
+      title: "ZYRIVO",
+      category: "E-Commerce Platform",
+      image: "/zyrivo.png",
       description:
-        "Cryptocurrency market tracker with interactive TradingView price charts, portfolio calculations, and real-time live data.",
+        "Full-stack e-commerce platform offering intuitive product discovery, cart management, secure authentication, and a responsive checkout experience.",
       techStack: [
         { name: "React", icon: <SiReact className="tech-icon-react" /> },
+        { name: "Node.js", icon: <FaCode className="tech-icon-node" /> },
+        { name: "MongoDB", icon: <SiMongodb className="tech-icon-mongo" /> },
+        { name: "Express", icon: <SiExpress className="tech-icon-express" /> },
         { name: "Tailwind", icon: <SiTailwindcss className="tech-icon-tailwind" /> },
-        { name: "Chart.js", icon: <SiChartdotjs className="tech-icon-chart" /> },
-        { name: "REST API", icon: <FaCode className="tech-icon-api" /> },
       ],
-      liveUrl: "https://cryptovault-demo.vercel.app",
-      githubUrl: "https://github.com/rohitsainidev/crypto-vault-dashboard",
+      liveUrl: "https://zyrivo.vercel.app/",
+      githubUrl: "https://github.com/rohitsainidev/zyrivo",
+    },
+    {
+      id: 4,
+      title: "Tic Tac Toe",
+      category: "Interactive Web Game",
+      image: "/tictactoe.png",
+      description:
+        "Interactive neon-styled web game featuring 2-player local match, smart bot opponent, custom sound effects, and live score tracking.",
+      techStack: [
+        { name: "JavaScript", icon: <SiJavascript className="tech-icon-js" /> },
+        { name: "HTML5", icon: <SiHtml5 className="tech-icon-html" /> },
+        { name: "CSS3", icon: <SiCss className="tech-icon-css3" /> },
+        { name: "Web Audio", icon: <FaCode className="tech-icon-api" /> },
+      ],
+      liveUrl: "https://tictactoe-webb.vercel.app/",
+      githubUrl: "https://github.com/rohitsainidev/tictactoe-web",
     },
   ];
 
@@ -110,51 +128,31 @@ function Projects() {
       onMouseMove={handleCardMouseMove}
     >
       {/* Mockup Frame with inner padding */}
-      <div className="projects-sec-mockup-frame">
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="projects-sec-mockup-frame"
+        aria-label={`View live preview of ${project.title}`}
+      >
         <img
           src={project.image}
           alt={project.title}
           loading="lazy"
           className="projects-sec-img"
         />
-        {/* Hover overlay with quick preview buttons */}
-        <div className="projects-sec-img-overlay">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="projects-sec-preview-btn"
-          >
-            <span>Live Preview</span>
-            <FaArrowUpRightFromSquare size={11} />
-          </a>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="projects-sec-preview-btn code-btn"
-          >
-            <FaGithub size={13} />
-            <span>Code</span>
-          </a>
-        </div>
-      </div>
+      </a>
 
       {/* Content Body (Left Aligned matching Reference) */}
       <div className="projects-sec-card-body">
-        {/* Category Tag */}
-        <div className="projects-sec-tag-row">
-          <span className="projects-sec-type-badge">Project</span>
-        </div>
-
         {/* Title */}
         <h3 className="projects-sec-card-title">{project.title}</h3>
 
         {/* Description */}
         <p className="projects-sec-card-desc">{project.description}</p>
 
-        {/* Tech Stack in dedicated rounded container box at bottom */}
-        <div className="projects-sec-tech-box">
+        {/* Tech Stack - Clean without outer box */}
+        <div className="projects-sec-tech-row">
           {project.techStack.map((tech) => (
             <span key={tech.name} className="projects-sec-tech-item">
               <span className="tech-item-icon">{tech.icon}</span>
@@ -163,23 +161,22 @@ function Projects() {
           ))}
         </div>
 
-        {/* Direct Action Links Row */}
-        <div className="projects-sec-actions">
+        {/* Clean & Centered Action Buttons */}
+        <div className="projects-sec-links-row">
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="projects-sec-action-btn primary"
+            className="projects-clean-btn live-btn"
           >
-            <span>Live Demo</span>
+            <span>Live Preview</span>
             <FaArrowUpRightFromSquare size={12} />
           </a>
-
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="projects-sec-action-btn secondary"
+            className="projects-clean-btn code-btn"
           >
             <FaGithub size={14} />
             <span>Code</span>
@@ -217,29 +214,6 @@ function Projects() {
         {/* 3 Featured Projects Grid */}
         <div className="projects-grid">
           {projectsData.map((project) => renderProjectCard(project))}
-        </div>
-
-        {/* Bottom GitHub CTA */}
-        <div className="projects-sec-bottom-cta reveal-up">
-          <div className="projects-sec-cta-box">
-            <div className="projects-sec-cta-text">
-              <h4>Want to explore more repositories?</h4>
-              <p>
-                Check out all my open-source projects, algorithms, and practical
-                codebases on GitHub.
-              </p>
-            </div>
-            <a
-              href="https://github.com/rohitsainidev"
-              target="_blank"
-              rel="noreferrer"
-              className="projects-sec-cta-btn"
-            >
-              <FaGithub size={18} />
-              <span>Explore GitHub Profile</span>
-              <FaArrowUpRightFromSquare size={13} />
-            </a>
-          </div>
         </div>
       </div>
     </section>

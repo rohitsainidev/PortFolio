@@ -1,0 +1,237 @@
+/* =========================================================
+   PROFESSIONAL & CLEAN PRELOADER (Theme-Adaptive & Fluid)
+   ========================================================= */
+
+/* Dark Mode Tokens (Default) */
+:root {
+  --preloader-bg: #08090d;
+  --preloader-glow: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.16) 0%,
+    rgba(56, 189, 248, 0.06) 50%,
+    transparent 70%
+  );
+  --preloader-track: rgba(255, 255, 255, 0.07);
+  --preloader-ring-start: #c084fc;
+  --preloader-ring-mid: #818cf8;
+  --preloader-ring-end: #38bdf8;
+  --preloader-ring-glow: rgba(168, 85, 247, 0.55);
+  --preloader-r-start: #c084fc;
+  --preloader-r-end: #38bdf8;
+  --preloader-r-shadow: rgba(192, 132, 252, 0.35);
+  --preloader-num-color: #f1f5f9;
+  --preloader-sym-color: #38bdf8;
+}
+
+/* Light Mode Tokens (Apple-Grade Professional Clean) */
+html[data-theme="light"] {
+  --preloader-bg: #f8fafc;
+  --preloader-glow: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.09) 0%,
+    rgba(14, 165, 233, 0.05) 50%,
+    transparent 70%
+  );
+  --preloader-track: rgba(15, 23, 42, 0.07);
+  --preloader-ring-start: #7c3aed;
+  --preloader-ring-mid: #6366f1;
+  --preloader-ring-end: #0284c7;
+  --preloader-ring-glow: rgba(124, 58, 237, 0.25);
+  --preloader-r-start: #7c3aed;
+  --preloader-r-end: #0284c7;
+  --preloader-r-shadow: rgba(124, 58, 237, 0.2);
+  --preloader-num-color: #0f172a;
+  --preloader-sym-color: #0284c7;
+}
+
+/* Fullscreen Overlay with Smooth Curtain Wipe Exit */
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background: var(--preloader-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1),
+              background 0.3s ease;
+}
+
+/* Luxury Curtain Slide Reveal Exit */
+.preloader-overlay.preloader-exit {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.preloader-overlay.preloader-exit .preloader-content {
+  transform: translateY(-24px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+/* Ambient Radial Glow */
+.preloader-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  background: var(--preloader-glow);
+  filter: blur(48px);
+  pointer-events: none;
+  animation: preloaderAuraPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderAuraPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Center Content */
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+/* Circular Wrapper */
+.preloader-circle-wrapper {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG Circular Ring */
+.preloader-progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Background Track Circle */
+.preloader-ring-track {
+  fill: none;
+  stroke: var(--preloader-track);
+  stroke-width: 2.4;
+  transition: stroke 0.3s ease;
+}
+
+/* Animated Progress Indicator */
+.preloader-ring-indicator {
+  fill: none;
+  stroke: url(#ringGrad);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 0 8px var(--preloader-ring-glow));
+}
+
+/* Clean Floating Monogram (Zero Box/Border) */
+.preloader-inner-icon {
+  position: relative;
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: preloaderIconBreath 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderIconBreath {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.92;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+.preloader-r-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  filter: drop-shadow(0 2px 10px var(--preloader-r-shadow));
+  transition: filter 0.3s ease;
+}
+
+/* Clean Monospace Digital Percentage Counter */
+.preloader-counter {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader-percent-num {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--preloader-num-color);
+  transition: color 0.3s ease;
+}
+
+.preloader-percent-sym {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--preloader-sym-color);
+  opacity: 0.9;
+  transition: color 0.3s ease;
+}
+
+/* Responsive Scaling */
+@media (max-width: 480px) {
+  .preloader-circle-wrapper {
+    width: 92px;
+    height: 92px;
+  }
+
+  .preloader-inner-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .preloader-r-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .preloader-percent-num {
+    font-size: 15px;
+  }
+
+  .preloader-percent-sym {
+    font-size: 12px;
+  }
+}
