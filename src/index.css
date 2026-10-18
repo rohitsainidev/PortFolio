@@ -214,9 +214,17 @@ html[data-theme="light"] .highlight-cyan {
    NAVBAR (LIGHT MODE)
 --------------------------------------------------------- */
 html[data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.88);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+
+html[data-theme="light"] .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 30px rgba(15, 23, 42, 0.06);
 }
 
 html[data-theme="light"] .logo {
@@ -535,54 +543,99 @@ html[data-theme="light"] .about-badge {
   text-shadow: none;
 }
 
-html[data-theme="light"] .highlight-card {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+html[data-theme="light"] .about-highlight-item:hover {
+  background: transparent;
 }
 
-html[data-theme="light"] .highlight-card:hover {
-  border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(168, 85, 247, 0.12);
+html[data-theme="light"] .about-free-illustration {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.12));
 }
 
-html[data-theme="light"] .highlight-title {
+html[data-theme="light"] .about-illustration-free:hover .about-free-illustration {
+  filter: drop-shadow(0 20px 36px rgba(124, 58, 237, 0.22)) drop-shadow(0 8px 18px rgba(15, 23, 42, 0.1));
+}
+
+html[data-theme="light"] .about-illustration-glow {
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(2, 132, 199, 0.06) 50%, transparent 72%);
+}
+
+html[data-theme="light"] .about-highlight-title {
   color: #0f172a;
 }
 
-html[data-theme="light"] .highlight-desc {
+html[data-theme="light"] .about-highlight-desc {
   color: #475569;
 }
 
-/* Light mode icon styling (clean, background-free with vivid contrast) */
-html[data-theme="light"] .highlight-card:nth-child(1) .highlight-icon-box {
+/* Light mode highlight hover states: crisp contrast, zero washed-out blur */
+html[data-theme="light"] .about-highlight-item:hover .about-highlight-title {
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .about-highlight-item:nth-child(1):hover .about-highlight-title {
+  color: #6d28d9 !important;
+}
+
+html[data-theme="light"] .about-highlight-item:nth-child(2):hover .about-highlight-title {
+  color: #0284c7 !important;
+}
+
+html[data-theme="light"] .about-highlight-item:nth-child(3):hover .about-highlight-title {
+  color: #be123c !important;
+}
+
+html[data-theme="light"] .about-highlight-item:hover .about-highlight-desc {
+  color: #1e293b !important;
+}
+
+/* Light mode left accent indicator bar */
+html[data-theme="light"] .about-highlight-item:nth-child(1):before {
+  background: linear-gradient(180deg, #7c3aed, #6d28d9);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+}
+
+html[data-theme="light"] .about-highlight-item:nth-child(2):before {
+  background: linear-gradient(180deg, #0284c7, #0369a1);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
+html[data-theme="light"] .about-highlight-item:nth-child(3):before {
+  background: linear-gradient(180deg, #e11d48, #be123c);
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
+}
+
+/* Light mode icon styling (Background-free, pure icon) */
+html[data-theme="light"] .about-highlight-item:nth-child(1) .about-highlight-icon-box {
   color: #7c3aed;
   filter: drop-shadow(0 4px 12px rgba(124, 58, 237, 0.35));
 }
 
-html[data-theme="light"] .highlight-card:nth-child(2) .highlight-icon-box {
+html[data-theme="light"] .about-highlight-item:nth-child(2) .about-highlight-icon-box {
   color: #0284c7;
   filter: drop-shadow(0 4px 12px rgba(2, 132, 199, 0.35));
 }
 
-html[data-theme="light"] .highlight-card:nth-child(3) .highlight-icon-box {
+html[data-theme="light"] .about-highlight-item:nth-child(3) .about-highlight-icon-box {
   color: #e11d48;
   filter: drop-shadow(0 4px 12px rgba(225, 29, 72, 0.35));
 }
 
-html[data-theme="light"] .highlight-card:nth-child(1):hover .highlight-icon-box {
+html[data-theme="light"] .about-highlight-item:nth-child(1):hover .about-highlight-icon-box {
   color: #6d28d9;
-  filter: drop-shadow(0 8px 20px rgba(124, 58, 237, 0.55));
+  filter: drop-shadow(0 8px 20px rgba(124, 58, 237, 0.6));
 }
 
-html[data-theme="light"] .highlight-card:nth-child(2):hover .highlight-icon-box {
+html[data-theme="light"] .about-highlight-item:nth-child(2):hover .about-highlight-icon-box {
   color: #0369a1;
-  filter: drop-shadow(0 8px 20px rgba(2, 132, 199, 0.55));
+  filter: drop-shadow(0 8px 20px rgba(2, 132, 199, 0.6));
 }
 
-html[data-theme="light"] .highlight-card:nth-child(3):hover .highlight-icon-box {
+html[data-theme="light"] .about-highlight-item:nth-child(3):hover .about-highlight-icon-box {
   color: #be123c;
-  filter: drop-shadow(0 8px 20px rgba(225, 29, 72, 0.55));
+  filter: drop-shadow(0 8px 20px rgba(225, 29, 72, 0.6));
 }
 
 html[data-theme="light"] .about-tab-btn {
@@ -773,114 +826,77 @@ html[data-theme="light"] .read-toggle-btn.is-expanded:hover .arrow {
   color: #ffffff;
 }
 
-html[data-theme="light"] .education-line {
-  background: linear-gradient(180deg, #7c3aed 0%, #0284c7 100%);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25);
-}
-
-html[data-theme="light"] .timeline-node {
-  background: #ffffff;
-  color: #7c3aed;
-  border-color: #7c3aed;
-  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
-}
-
-html[data-theme="light"] .card-cyan .timeline-node {
-  color: #0284c7;
-  border-color: #0284c7;
-  box-shadow: 0 0 16px rgba(2, 132, 199, 0.25);
-}
-
-html[data-theme="light"] .education-box {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-}
-
-html[data-theme="light"] .card-purple .education-box:hover {
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(168, 85, 247, 0.15);
-}
-
-html[data-theme="light"] .card-cyan .education-box:hover {
-  border-color: rgba(2, 132, 199, 0.5);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09), 0 0 20px rgba(2, 132, 199, 0.15);
-}
-
-html[data-theme="light"] .education-number {
-  color: #7c3aed;
-  text-shadow: none;
-}
-
-html[data-theme="light"] .card-cyan .education-number {
-  color: #0284c7;
-}
-
-html[data-theme="light"] .badge-purple {
-  color: #7c3aed;
-  text-shadow: none;
-}
-
-html[data-theme="light"] .badge-cyan {
-  color: #0284c7;
-  text-shadow: none;
-}
-
-html[data-theme="light"] .education-year-pill {
-  color: #7c3aed;
-  text-shadow: none;
-}
-
-html[data-theme="light"] .card-cyan .education-year-pill {
-  color: #0284c7;
-}
-
-html[data-theme="light"] .education-box h3 {
+/* Academic Roadmap (Light Mode - Website Cohesive) */
+html[data-theme="light"] .education-title {
   color: #0f172a;
 }
 
-html[data-theme="light"] .education-box h4 {
-  color: #7c3aed;
-}
-
-html[data-theme="light"] .card-cyan .education-box h4 {
-  color: #0284c7;
-}
-
-html[data-theme="light"] .education-institute {
+html[data-theme="light"] .education-subtitle {
   color: #475569;
 }
 
-html[data-theme="light"] .result-label {
-  color: #64748b;
+html[data-theme="light"] .education-item {
+  border-bottom-color: rgba(15, 23, 42, 0.08);
 }
 
-html[data-theme="light"] .result-value {
-  color: #0284c7;
-  text-shadow: none;
+html[data-theme="light"] .edu-accent-purple::before {
+  background: linear-gradient(180deg, #7c3aed, #6366f1);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
 }
 
-html[data-theme="light"] .card-purple .result-value {
+html[data-theme="light"] .edu-accent-cyan::before {
+  background: linear-gradient(180deg, #0284c7, #0ea5e9);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+}
+
+html[data-theme="light"] .edu-accent-purple .education-icon-wrap {
   color: #7c3aed;
+  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.35));
 }
 
-html[data-theme="light"] .card-cyan .result-value {
+html[data-theme="light"] .edu-accent-cyan .education-icon-wrap {
   color: #0284c7;
+  filter: drop-shadow(0 2px 6px rgba(2, 132, 199, 0.35));
 }
 
-html[data-theme="light"] .education-institute-main {
+html[data-theme="light"] .education-degree-text {
   color: #0f172a;
 }
 
-html[data-theme="light"] .education-university {
+html[data-theme="light"] .edu-accent-purple:hover .education-degree-text {
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .edu-accent-cyan:hover .education-degree-text {
+  color: #0284c7;
+}
+
+html[data-theme="light"] .education-place {
+  color: #475569;
+}
+
+html[data-theme="light"] .edu-separator {
+  color: #94a3b8;
+}
+
+html[data-theme="light"] .edu-place-pin,
+html[data-theme="light"] .edu-time svg {
+  color: #94a3b8;
+}
+
+html[data-theme="light"] .edu-time {
   color: #64748b;
 }
 
-html[data-theme="light"] .result-status {
-  color: #059669;
+html[data-theme="light"] .edu-accent-purple .edu-score-val {
+  color: #7c3aed;
 }
 
-html[data-theme="light"] .education-description {
+html[data-theme="light"] .edu-accent-cyan .edu-score-val {
+  color: #0284c7;
+}
+
+html[data-theme="light"] .education-desc-text {
   color: #475569;
 }
 

@@ -10,7 +10,7 @@
   --nav-text-hover: #ffffff;
 }
 
-/* HEADER WRAPPER */
+/* HEADER WRAPPER - Transparent at top, solid glass on scroll */
 .navbar {
   position: fixed;
   top: 0;
@@ -19,14 +19,23 @@
   height: 80px;
   z-index: 9999;
 
-  /* Rich Glass Background (No washed out / bleed issues) */
-  background: var(--nav-bg);
+  /* Transparent at top of page */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background 0.35s ease, border-bottom 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Scrolled state: Rich glass background kicks in */
+.navbar.scrolled {
+  background: rgba(8, 9, 13, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-
-  border-bottom: 1px solid var(--nav-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* CONTAINER */

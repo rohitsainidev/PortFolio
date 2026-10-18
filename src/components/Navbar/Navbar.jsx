@@ -28,6 +28,18 @@ function GithubIcon() {
 
 function Navbar({ theme = "dark", toggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detect scroll for sticky navbar effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    // Check on mount in case page is already scrolled
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Lock body scroll & sync Lenis when mobile drawer is open
   useEffect(() => {
@@ -78,7 +90,7 @@ function Navbar({ theme = "dark", toggleTheme }) {
   ];
 
   return (
-    <header className="navbar">
+    <header className={`navbar${scrolled ? " scrolled" : ""}`}>
       {/* LinkedIn-style Mobile Backdrop Overlay */}
       <div
         className={`mobile-backdrop ${mobileMenuOpen ? "active" : ""}`}

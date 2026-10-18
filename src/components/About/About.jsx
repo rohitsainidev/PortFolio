@@ -10,7 +10,14 @@ import {
   FaLaptopCode,
   FaHeart,
 } from "react-icons/fa6";
-import { FiArrowRight, FiCalendar, FiChevronDown } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiCalendar,
+  FiChevronDown,
+  FiMapPin,
+  FiCheckCircle,
+  FiAward,
+} from "react-icons/fi";
 import "./About.css";
 
 function About() {
@@ -39,48 +46,43 @@ function About() {
   const highlights = [
     {
       icon: <FaLaptopCode />,
-      title: "Full Stack Focus",
-      desc: "Building end-to-end web apps with modern React and Node ecosystems.",
+      title: "Full-Stack Developer",
+      desc: "Architecting scalable, end-to-end web applications with modern React, Node.js, and database ecosystems.",
     },
     {
       icon: <FaRocket />,
-      title: "Fast Learner",
-      desc: "Constantly exploring cutting-edge tools, libraries, and frameworks.",
+      title: "Adaptive & Fast Learner",
+      desc: "Quickly mastering cutting-edge tools, modern frameworks, and best practices to build impactful solutions.",
     },
     {
       icon: <FaHeart />,
-      title: "Passion for UX/UI",
-      desc: "Crafting intuitive, accessible, and delightful UI/UX experiences.",
+      title: "Passion for UI/UX",
+      desc: "Crafting pixel-perfect, accessible, and delightful digital experiences where modern design meets seamless interactivity.",
     },
   ];
 
   const educationList = [
     {
       id: "01",
-      level: "ACADEMIC",
-      degree: "Bachelor of Technology",
-      field: "Computer Science & Engineering",
-      institute: "MIMIT, Malout, Punjab, India",
-      university: "IKGPTU — I.K. Gujral Punjab Technical University",
-      year: "2024 — 2028",
-      scoreType: "CGPA",
-      score: "7.5 / 10",
-      desc: "B.Tech in Computer Science & Engineering under IKGPTU, with a focus on programming, web development, software engineering, and modern technologies through hands-on projects and continuous learning.",
+      degree: "Bachelor of Technology — Computer Science & Engineering",
+      institute: "MIMIT",
+      university: "Punjab Technical University",
+      period: "2024 — Present",
+      score: "7.5 CGPA",
+      desc: "Building strong foundations in computer science principles, Data Structures & Algorithms, full-stack web development, and software engineering.",
       icon: <FaGraduationCap />,
-      badgeColor: "purple",
+      accent: "purple",
     },
     {
       id: "02",
-      level: "HIGHER SECONDARY",
-      degree: "Higher Secondary Education",
-      field: "Science / PCM (Physics, Chemistry, Maths)",
-      institute: "S.B. Inter College, Bhagatpur, Moradabad, India",
-      year: "2021 — 2023",
-      scoreType: "PERCENTAGE",
+      degree: "Higher Secondary Education — Science (PCM)",
+      institute: "S.B. Inter College",
+      university: "Moradabad, UP",
+      period: "2021 — 2023",
       score: "70.1%",
-      desc: "Completed Higher Secondary education with Physics, Chemistry, and Mathematics, developing a strong foundation in analytical thinking, problem-solving, and technical concepts.",
+      desc: "Completed Higher Secondary education majoring in Physics, Chemistry, and Mathematics, developing strong analytical thinking and problem-solving skills.",
       icon: <FaSchool />,
-      badgeColor: "cyan",
+      accent: "cyan",
     },
   ];
 
@@ -133,15 +135,33 @@ function About() {
           </p>
         </div>
 
-        {/* Creative Highlight Pillars */}
-        <div className="about-highlights-grid reveal-scale">
-          {highlights.map((item, idx) => (
-            <div className={`highlight-card delay-${idx + 1}`} key={idx}>
-              <div className="highlight-icon-box">{item.icon}</div>
-              <h3 className="highlight-title">{item.title}</h3>
-              <p className="highlight-desc">{item.desc}</p>
+        {/* Split Layout: Left User Illustration + Right Highlights */}
+        <div className="about-overview-layout reveal-scale">
+          {/* Left Column: Transparent Illustration (Free floating, no box/card) */}
+          <div className="about-illustration-col">
+            <div className="about-illustration-free">
+              <div className="about-illustration-glow" />
+              <img
+                src="/about-developer-transparent.png?v=leaf_plant_fixed_v8"
+                alt="Rohit Saini - Full Stack MERN Developer"
+                className="about-free-illustration"
+                draggable="false"
+              />
             </div>
-          ))}
+          </div>
+
+          {/* Right Column: Clean Highlights (No boxes, pure icons & typography) */}
+          <div className="about-highlights-list">
+            {highlights.map((item, idx) => (
+              <div className={`about-highlight-item delay-${idx + 1}`} key={idx}>
+                <div className="about-highlight-icon-box">{item.icon}</div>
+                <div className="about-highlight-content">
+                  <h3 className="about-highlight-title">{item.title}</h3>
+                  <p className="about-highlight-desc">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Story / Philosophy / Approach Tabs */}
@@ -345,76 +365,52 @@ function About() {
           </div>
         </div>
 
-        {/* Academic Roadmap */}
+        {/* Academic Journey (Matches Website Aesthetic) */}
         <div className="education-section reveal-up">
           <div className="education-header">
             <span className="about-badge">ROADMAP</span>
             <h2 className="education-title">
-              My Academic <span className="gradient-text">Journey.</span>
+              My Academic <span className="gradient-text">Journey</span>
             </h2>
             <p className="education-subtitle">
-              A journey of learning, growth and continuous improvement.
+              Formal education and engineering foundations that developed my core problem-solving mindset, technical principles, and software development skills.
             </p>
           </div>
 
-          <div className="education-roadmap">
-            {/* Connecting Neon Line */}
-            <div className="education-line">
-              <span className="education-line-glow" />
-            </div>
+          <div className="education-list">
+            {educationList.map((item) => (
+              <div className={`education-item edu-accent-${item.accent}`} key={item.id}>
+                <div className="education-icon-wrap">
+                  {item.icon}
+                </div>
 
-            <div className="education-timeline-list">
-              {educationList.map((item, idx) => (
-                <div
-                  className={`education-item-wrapper card-${item.badgeColor} reveal-left delay-${idx + 1}`}
-                  key={item.id}
-                >
-                  {/* Timeline Milestone Node Icon on the Spine */}
-                  <div className="timeline-node">
-                    <span className="node-icon">{item.icon}</span>
+                <div className="education-body">
+                  <div className="education-top-bar">
+                    <h3 className="education-degree-text">{item.degree}</h3>
+                    <div className="education-meta-text">
+                      <span className="edu-time">
+                        <FiCalendar size={13} />
+                        <span>{item.period}</span>
+                      </span>
+                      <span className="edu-dot">•</span>
+                      <span className="edu-score-val">
+                        <FiAward size={13} />
+                        <span>{item.score}</span>
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Milestone Card with Year Inside on the Right Side */}
-                  <article className="education-box">
-                    <div className="education-box-top">
-                      <div className="education-top-left">
-                        <div className="education-number">{item.id}</div>
-                        <span className={`education-status badge-${item.badgeColor}`}>
-                          {item.level}
-                        </span>
-                      </div>
+                  <p className="education-place">
+                    <FiMapPin size={12} className="edu-place-pin" />
+                    <span>{item.institute}</span>
+                    <span className="edu-separator">—</span>
+                    <span>{item.university}</span>
+                  </p>
 
-                      {/* Year badge inside the box on right side */}
-                      <div className="education-year-pill">
-                        <FiCalendar size={13} />
-                        <span>{item.year}</span>
-                      </div>
-                    </div>
-
-                    <h3>{item.degree}</h3>
-                    <h4>{item.field}</h4>
-                    <div className="education-institute-group">
-                      <p className="education-institute-main">{item.institute}</p>
-                      {item.university && (
-                        <p className="education-university">{item.university}</p>
-                      )}
-                    </div>
-
-                    {item.score && (
-                      <div className="education-result">
-                        <span className="result-label">{item.scoreType}:</span>
-                        <span className="result-value">{item.score}</span>
-                        {item.status && (
-                          <span className="result-status">· {item.status}</span>
-                        )}
-                      </div>
-                    )}
-
-                    <p className="education-description">{item.desc}</p>
-                  </article>
+                  <p className="education-desc-text">{item.desc}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
