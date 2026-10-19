@@ -248,6 +248,7 @@
   padding: 8px 12px;
   color: #f1f5f9;
   text-decoration: none;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   border: none !important;
@@ -255,6 +256,7 @@
   background: transparent !important;
   box-shadow: none !important;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .github-btn::before {

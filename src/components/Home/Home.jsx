@@ -12,6 +12,7 @@ import { SiMongodb } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiArrowUpRight } from "react-icons/fi";
 import "./Home.css";
+import ProjectAccessModal from "../Projects/ProjectAccessModal";
 
 const roles = [
   "Frontend Developer",
@@ -23,6 +24,7 @@ const roles = [
 function Home() {
   const homeRef = useRef(null);
   const [roleIndex, setRoleIndex] = useState(0);
+  const [accessModalTarget, setAccessModalTarget] = useState(null);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -123,27 +125,39 @@ function Home() {
 
           {/* Social Quick Links */}
           <div className="home-socials">
-            <a
-              href="https://github.com/rohitsainidev"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
               className="social-pill"
+              onClick={() =>
+                setAccessModalTarget({
+                  title: "GitHub Profile",
+                  profileName: "GitHub Profile",
+                  targetUrl: "https://github.com/rohitsainidev",
+                  targetType: "profile",
+                })
+              }
               aria-label="GitHub Profile"
             >
               <FaGithub />
               <span>GitHub</span>
-            </a>
+            </button>
 
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
               className="social-pill"
+              onClick={() =>
+                setAccessModalTarget({
+                  title: "LinkedIn Profile",
+                  profileName: "LinkedIn Profile",
+                  targetUrl: "https://linkedin.com/",
+                  targetType: "profile",
+                })
+              }
               aria-label="LinkedIn Profile"
             >
               <FaLinkedinIn />
               <span>LinkedIn</span>
-            </a>
+            </button>
 
             <a
               href="#contact"
@@ -175,12 +189,22 @@ function Home() {
                 src="/rohit-saini.png"
                 alt="Rohit Kumar"
                 className="morph-blob-img"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="blob-lighting-overlay" />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Developer Access Modal */}
+      <ProjectAccessModal
+        project={accessModalTarget}
+        isOpen={Boolean(accessModalTarget)}
+        onClose={() => setAccessModalTarget(null)}
+        onLaunch={(url) => window.open(url, "_blank", "noopener,noreferrer")}
+      />
     </section>
   );
 }

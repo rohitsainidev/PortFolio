@@ -77,7 +77,8 @@ function About() {
       id: "02",
       degree: "Higher Secondary Education — Science (PCM)",
       institute: "S.B. Inter College",
-      university: "Moradabad, UP",
+      university:
+        "Moradabad, UP",
       period: "2021 — 2023",
       score: "70.1%",
       desc: "Completed Higher Secondary education majoring in Physics, Chemistry, and Mathematics, developing strong analytical thinking and problem-solving skills.",

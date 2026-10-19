@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import "./Navbar.css";
+import ProjectAccessModal from "../Projects/ProjectAccessModal";
 
 function GithubIcon() {
   return (
@@ -29,6 +30,7 @@ function GithubIcon() {
 function Navbar({ theme = "dark", toggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showGithubModal, setShowGithubModal] = useState(false);
 
   // Detect scroll for sticky navbar effect
   useEffect(() => {
@@ -167,15 +169,15 @@ function Navbar({ theme = "dark", toggleTheme }) {
           </button>
 
           {/* GitHub */}
-          <a
-            href="https://github.com/rohitsainidev"
-            target="_blank"
-            rel="noreferrer"
+          <button
+            type="button"
             className="github-btn"
+            onClick={() => setShowGithubModal(true)}
+            aria-label="Visit GitHub Profile"
           >
             <GithubIcon />
             <span>GitHub</span>
-          </a>
+          </button>
 
           {/* Animated 3-Line to Cross Mobile Toggle */}
           <button
@@ -193,6 +195,18 @@ function Navbar({ theme = "dark", toggleTheme }) {
           </button>
         </div>
       </div>
+
+      {/* Developer Access Modal for GitHub Profile */}
+      <ProjectAccessModal
+        project={{
+          title: "GitHub Profile",
+          targetUrl: "https://github.com/rohitsainidev",
+          targetType: "profile",
+        }}
+        isOpen={showGithubModal}
+        onClose={() => setShowGithubModal(false)}
+        onLaunch={(url) => window.open(url, "_blank", "noopener,noreferrer")}
+      />
     </header>
   );
 }

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { FaGithub, FaLinkedin, FaXTwitter, FaDiscord, FaHeart } from "react-icons/fa6";
 import { FiMail, FiMapPin } from "react-icons/fi";
 import "./Footer.css";
+import ProjectAccessModal from "../Projects/ProjectAccessModal";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const [footerModalTarget, setFooterModalTarget] = useState(null);
 
   return (
     <footer className="footer-container">
@@ -60,24 +63,36 @@ function Footer() {
             <h4 className="footer-col-title">Connect</h4>
             <p className="footer-social-sub">Follow my work &amp; journey</p>
             <div className="footer-social-icons">
-              <a
-                href="https://github.com/rohitsainidev"
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
                 className="footer-social-btn"
+                onClick={() =>
+                  setFooterModalTarget({
+                    title: "GitHub Profile",
+                    profileName: "GitHub Profile",
+                    targetUrl: "https://github.com/rohitsainidev",
+                    targetType: "profile",
+                  })
+                }
                 aria-label="GitHub Profile"
               >
                 <FaGithub />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
+              </button>
+              <button
+                type="button"
                 className="footer-social-btn"
+                onClick={() =>
+                  setFooterModalTarget({
+                    title: "LinkedIn Profile",
+                    profileName: "LinkedIn Profile",
+                    targetUrl: "https://linkedin.com",
+                    targetType: "profile",
+                  })
+                }
                 aria-label="LinkedIn Profile"
               >
                 <FaLinkedin />
-              </a>
+              </button>
               <a
                 href="https://twitter.com"
                 target="_blank"
@@ -107,6 +122,14 @@ function Footer() {
           </p>
         </div>
       </div>
+
+      {/* Developer Access Modal */}
+      <ProjectAccessModal
+        project={footerModalTarget}
+        isOpen={Boolean(footerModalTarget)}
+        onClose={() => setFooterModalTarget(null)}
+        onLaunch={(url) => window.open(url, "_blank", "noopener,noreferrer")}
+      />
     </footer>
   );
 }

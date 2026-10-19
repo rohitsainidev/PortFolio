@@ -262,9 +262,11 @@
   box-shadow: none !important;
   color: #94a3b8;
   text-decoration: none;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .social-pill svg {

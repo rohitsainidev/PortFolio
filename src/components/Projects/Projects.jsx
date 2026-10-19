@@ -15,9 +15,11 @@ import {
   SiCss,
 } from "react-icons/si";
 import "./Projects.css";
+import ProjectAccessModal from "./ProjectAccessModal";
 
 function Projects() {
   const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const [activeModalProject, setActiveModalProject] = useState(null);
   const sectionRef = useRef(null);
 
   // Section Observer for scroll reveal
@@ -41,15 +43,6 @@ function Projects() {
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
-
-  // Spotlight mouse effect on individual card hover
-  const handleCardMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
-    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
-  };
 
   // 3 Featured Projects
   const projectsData = [
@@ -125,7 +118,6 @@ function Projects() {
     <article
       key={project.id}
       className="projects-sec-card"
-      onMouseMove={handleCardMouseMove}
     >
       {/* Mockup Frame with inner padding */}
       <a
@@ -134,11 +126,20 @@ function Projects() {
         rel="noreferrer"
         className="projects-sec-mockup-frame"
         aria-label={`View live preview of ${project.title}`}
+        onClick={(e) => {
+          e.preventDefault();
+          setActiveModalProject({
+            ...project,
+            targetUrl: project.liveUrl,
+            targetType: "live",
+          });
+        }}
       >
         <img
           src={project.image}
           alt={project.title}
           loading="lazy"
+          decoding="async"
           className="projects-sec-img"
         />
       </a>
@@ -163,24 +164,36 @@ function Projects() {
 
         {/* Clean & Centered Action Buttons */}
         <div className="projects-sec-links-row">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
+          <button
+            type="button"
             className="projects-clean-btn live-btn"
+            onClick={() =>
+              setActiveModalProject({
+                ...project,
+                targetUrl: project.liveUrl,
+                targetType: "live",
+              })
+            }
+            aria-label={`Launch preview for ${project.title}`}
           >
             <span>Live Preview</span>
             <FaArrowUpRightFromSquare size={12} />
-          </a>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
+          </button>
+          <button
+            type="button"
             className="projects-clean-btn code-btn"
+            onClick={() =>
+              setActiveModalProject({
+                ...project,
+                targetUrl: project.githubUrl,
+                targetType: "code",
+              })
+            }
+            aria-label={`View GitHub repository for ${project.title}`}
           >
             <FaGithub size={14} />
             <span>Code</span>
-          </a>
+          </button>
         </div>
       </div>
     </article>
@@ -216,6 +229,14 @@ function Projects() {
           {projectsData.map((project) => renderProjectCard(project))}
         </div>
       </div>
+
+      {/* Luxury Developer Access Modal */}
+      <ProjectAccessModal
+        project={activeModalProject}
+        isOpen={Boolean(activeModalProject)}
+        onClose={() => setActiveModalProject(null)}
+        onLaunch={(url) => window.open(url, "_blank", "noopener,noreferrer")}
+      />
     </section>
   );
 }

@@ -13,7 +13,6 @@ import Preloader from "./components/Preloader/Preloader";
 
 function App() {
   const progressBarRef = useRef(null);
-  const [isAppLoaded, setIsAppLoaded] = useState(false);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("portfolio-theme-v2") || "light";
   });
@@ -127,7 +126,6 @@ function App() {
   }, []);
 
   const handlePreloaderComplete = () => {
-    setIsAppLoaded(true);
     // Auto-reveal elements currently in the initial viewport
     requestAnimationFrame(() => {
       const elements = document.querySelectorAll(

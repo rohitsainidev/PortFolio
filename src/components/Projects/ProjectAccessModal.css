@@ -1,0 +1,564 @@
+/* =========================================================
+   PROJECT ACCESS MODAL (ULTRA-LUXURY EDITORIAL SYSTEM)
+   Apple-grade Frosted Glass for Light & Dark Modes
+   ========================================================= */
+
+/* BACKDROP OVERLAY
+   Uses deep contrast tinted blur in BOTH modes so the dialog pops crisply */
+.access-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 14, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: modalOverlayFade 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  touch-action: none;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+}
+
+@keyframes modalOverlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ambient Radial Glow Behind Dialog */
+.access-modal-backdrop-glow {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.18) 0%,
+    rgba(56, 189, 248, 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(75px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* DIALOG CONTAINER (Dark Mode Default) */
+.access-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 410px;
+  max-height: calc(100dvh - 36px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: linear-gradient(
+    145deg,
+    rgba(18, 22, 38, 0.96) 0%,
+    rgba(11, 14, 25, 0.98) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow:
+    0 25px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 30px rgba(168, 85, 247, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 28px 24px 22px;
+  color: #f1f5f9;
+  animation: modalScaleIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.access-modal-dialog::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Top Accent Line */
+.access-modal-top-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8b5cf6 0%, #38bdf8 50%, #c084fc 100%);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+/* Close Button */
+.access-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.access-modal-close:hover:not(:disabled) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: rotate(90deg);
+}
+
+.access-modal-close:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Header */
+.access-modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Badge - Clean & Transparent without background or border */
+.access-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: #c084fc;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.access-badge-icon {
+  color: #c084fc;
+}
+
+.access-badge-icon.unlock {
+  color: #22c55e;
+}
+
+.access-modal-title {
+  margin: 0 0 5px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.access-modal-desc {
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #94a3b8;
+}
+
+/* Form Styles */
+.access-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.access-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.access-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  letter-spacing: -0.2px;
+}
+
+.access-required {
+  color: #f43f5e;
+}
+
+.access-optional {
+  font-size: 11px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.access-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.access-input-icon {
+  position: absolute;
+  left: 12px;
+  color: #64748b;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.access-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px 0 34px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.access-input::placeholder {
+  color: #475569;
+}
+
+.access-input:focus {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.04);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18);
+}
+
+.access-input.input-has-error {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.18);
+}
+
+.access-input-wrapper:focus-within .access-input-icon {
+  color: #c084fc;
+}
+
+.access-error-text {
+  font-size: 11px;
+  color: #f87171;
+  padding-left: 2px;
+}
+
+/* Action Buttons */
+.access-actions-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.access-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 22px -4px rgba(109, 40, 217, 0.45);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+
+.access-submit-btn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 28px -4px rgba(109, 40, 217, 0.6);
+  background: linear-gradient(135deg, #9b6cf8 0%, #7c3aed 100%);
+}
+
+.access-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Clean Minimalist Guest Link (No Clunky Outer Box) */
+.access-guest-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  padding: 6px 12px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #94a3b8;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.access-guest-btn:hover {
+  color: #e2e8f0;
+}
+
+.guest-arrow {
+  transition: transform 0.2s ease;
+}
+
+.access-guest-btn:hover .guest-arrow {
+  transform: translateX(3px);
+}
+
+/* Unlocking State */
+.access-unlocking-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 10px 16px;
+  text-align: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.unlock-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 0 22px rgba(34, 197, 94, 0.25);
+  animation: popIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.unlock-check-icon {
+  color: #22c55e;
+}
+
+.unlock-heading {
+  margin: 0 0 5px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.unlock-subtext {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.unlock-loader-bar {
+  width: 180px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.unlock-loader-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  border-radius: 100px;
+  animation: fillProgress 0.35s ease forwards;
+}
+
+@keyframes fillProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* =========================================================
+   WHITE / LIGHT THEME LUXURY REDESIGN (html[data-theme="light"])
+   Apple-Grade Frosted Glass with Deep Slate Contrast
+   ========================================================= */
+
+/* Backdrop overlay keeps rich dark glass so white dialog stands out crisp */
+html[data-theme="light"] .access-modal-overlay {
+  background: rgba(15, 23, 42, 0.52);
+  backdrop-filter: blur(16px);
+}
+
+/* Dialog Container: Premium Frosted White Surface */
+html[data-theme="light"] .access-modal-dialog {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow:
+    0 24px 50px -12px rgba(15, 23, 42, 0.28),
+    0 8px 20px -8px rgba(15, 23, 42, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: #0f172a;
+}
+
+/* Close Button in Light Mode */
+html[data-theme="light"] .access-modal-close {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+html[data-theme="light"] .access-modal-close:hover:not(:disabled) {
+  color: #0f172a;
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+/* Badge in Light Mode */
+html[data-theme="light"] .access-modal-badge {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: #7c3aed;
+}
+
+html[data-theme="light"] .access-badge-icon {
+  color: #7c3aed;
+}
+
+/* Title & Subtitle in Light Mode */
+html[data-theme="light"] .access-modal-title {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .access-modal-desc {
+  color: #64748b;
+}
+
+/* Form Labels & Icons in Light Mode */
+html[data-theme="light"] .access-label {
+  color: #334155;
+  font-weight: 600;
+}
+
+html[data-theme="light"] .access-optional {
+  color: #94a3b8;
+}
+
+html[data-theme="light"] .access-input-icon {
+  color: #94a3b8;
+}
+
+/* Inputs in Light Mode */
+html[data-theme="light"] .access-input {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme="light"] .access-input::placeholder {
+  color: #94a3b8;
+}
+
+html[data-theme="light"] .access-input:focus {
+  border-color: #8b5cf6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+html[data-theme="light"] .access-input-wrapper:focus-within .access-input-icon {
+  color: #7c3aed;
+}
+
+/* Guest Button in Light Mode */
+html[data-theme="light"] .access-guest-btn {
+  color: #64748b;
+}
+
+html[data-theme="light"] .access-guest-btn:hover {
+  color: #0f172a;
+}
+
+/* Unlocking State in Light Mode */
+html[data-theme="light"] .unlock-heading {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .unlock-subtext {
+  color: #64748b;
+}
+
+html[data-theme="light"] .unlock-loader-bar {
+  background: #e2e8f0;
+}
+
+/* Mobile Responsiveness & Touch Optimization */
+@media (max-width: 520px) {
+  .access-modal-overlay {
+    padding: 14px;
+  }
+
+  .access-modal-dialog {
+    padding: 24px 18px 20px;
+    border-radius: 18px;
+    max-height: calc(100dvh - 28px);
+  }
+
+  .access-modal-title {
+    font-size: 19px;
+  }
+
+  .access-modal-desc {
+    font-size: 12.5px;
+  }
+
+  /* Prevent iOS Safari 16px auto-zoom */
+  .access-input {
+    font-size: 16px !important;
+    height: 44px;
+  }
+
+  .access-submit-btn {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .access-modal-close {
+    width: 32px;
+    height: 32px;
+    top: 14px;
+    right: 14px;
+  }
+}
