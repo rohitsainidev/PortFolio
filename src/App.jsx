@@ -37,16 +37,24 @@ function App() {
 
     let lenis = null;
     let rafId = null;
+    let progressTicking = false;
+    let nativeRafId = null;
 
     const handleNativeScroll = () => {
-      const scrollableHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      if (progressBarRef.current) {
-        const progress =
-          scrollableHeight > 0
-            ? (window.scrollY / scrollableHeight) * 100
-            : 0;
-        progressBarRef.current.style.width = `${progress}%`;
+      if (!progressTicking) {
+        progressTicking = true;
+        nativeRafId = requestAnimationFrame(() => {
+          const scrollableHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          if (progressBarRef.current) {
+            const progress =
+              scrollableHeight > 0
+                ? (window.scrollY / scrollableHeight) * 100
+                : 0;
+            progressBarRef.current.style.width = `${progress}%`;
+          }
+          progressTicking = false;
+        });
       }
     };
 
@@ -134,6 +142,7 @@ function App() {
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
+      if (nativeRafId) cancelAnimationFrame(nativeRafId);
       window.removeEventListener("scroll", handleNativeScroll);
       document.removeEventListener("click", handleAnchorClick);
       observer.disconnect();

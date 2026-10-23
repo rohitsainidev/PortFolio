@@ -3,12 +3,14 @@
 .home {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
   padding: 130px 6% 80px;
   overflow: clip;
   background: transparent;
+  touch-action: pan-y;
 }
 
 /* AMBIENT GLOWS */
@@ -311,6 +313,7 @@
   width: 440px;
   height: 440px;
   border-radius: 50%;
+  pointer-events: none;
   background: radial-gradient(
     circle,
     rgba(6, 182, 212, 0.35) 0%,
@@ -586,11 +589,31 @@
   .morph-blob-inner {
     width: 280px;
     height: 320px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
   }
 
-  /* Mobile GPU Performance Optimization */
+  /* Mobile Touch & GPU Performance Optimization */
+  .home-container,
+  .home-content,
+  .home-image-wrapper,
+  .morph-blob-stage {
+    touch-action: pan-y;
+  }
+
   .home-ambient-glow {
-    filter: blur(50px);
+    filter: blur(30px);
+  }
+
+  .blob-ambient-glow {
+    filter: blur(25px);
+  }
+
+  .blob-contour-line.primary-cyan {
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.9));
+  }
+
+  .blob-contour-line.secondary-purple {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.7));
   }
 
   .morph-blob-stage,
