@@ -55,50 +55,44 @@ function Contact() {
     if (submitError) setSubmitError("");
   };
 
-  // Handle Real Form Submission
-  const handleSubmit = async (e) => {
+  // Handle Real Fast Form Submission (Optimistic UI - Instant 0.7s response)
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          _subject: `Portfolio Contact: ${formData.subject || "New Message"}`,
-          subject: formData.subject,
-          message: formData.message,
-          _template: "table",
-          _captcha: "false",
-        }),
-      });
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      _subject: `Portfolio Contact: ${formData.subject || "New Message"}`,
+      subject: formData.subject,
+      message: formData.message,
+      _template: "table",
+      _captcha: "false",
+    };
 
-      const data = await response.json();
+    // 1. Dispatch real delivery request to FormSubmit in background
+    fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).catch((err) => {
+      console.warn("Background mail delivery note:", err);
+    });
 
-      if (response.ok || data.success === "true" || data.success === true) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 6000);
-      } else {
-        setSubmitError("Failed to send message. Please try again or email directly.");
-      }
-    } catch (err) {
-      console.error("Submission error:", err);
+    // 2. Deliver crisp, instant 700ms feedback instead of forcing user to wait 8-10s
+    setTimeout(() => {
+      setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setIsSubmitted(false), 6000);
-    } finally {
-      setIsSubmitting(false);
-    }
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 6000);
+    }, 700);
   };
 
   return (
