@@ -21,14 +21,11 @@ const roles = [
   "Tech Innovator",
 ];
 
-function Home() {
-  const homeRef = useRef(null);
+function TypingRole() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [accessModalTarget, setAccessModalTarget] = useState(null);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typing animation
   useEffect(() => {
     const currentRole = roles[roleIndex];
     let speed = isDeleting ? 40 : 90;
@@ -56,6 +53,18 @@ function Home() {
 
     return () => clearTimeout(timer);
   }, [text, isDeleting, roleIndex]);
+
+  return (
+    <span className="typing-role">
+      {text}
+      <span className="cursor">|</span>
+    </span>
+  );
+}
+
+function Home() {
+  const homeRef = useRef(null);
+  const [accessModalTarget, setAccessModalTarget] = useState(null);
 
   // Reveal observer
   useEffect(() => {
@@ -94,10 +103,7 @@ function Home() {
           {/* Typing Role */}
           <h2 className="home-role">
             <span className="role-prefix">I am a </span>
-            <span className="typing-role">
-              {text}
-              <span className="cursor">|</span>
-            </span>
+            <TypingRole />
           </h2>
 
           <p className="home-description">

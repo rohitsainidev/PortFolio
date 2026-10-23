@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   padding: 130px 6% 80px;
-  overflow: hidden;
+  overflow: clip;
   background: transparent;
 }
 
@@ -586,6 +586,18 @@
   .morph-blob-inner {
     width: 280px;
     height: 320px;
+  }
+
+  /* Mobile GPU Performance Optimization */
+  .home-ambient-glow {
+    filter: blur(50px);
+  }
+
+  .morph-blob-stage,
+  .morph-blob-inner,
+  .blob-contour-line {
+    transform: translateZ(0);
+    will-change: transform;
   }
 }
 

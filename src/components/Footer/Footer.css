@@ -6,7 +6,7 @@
   padding: 80px 6% 36px;
   background: rgba(8, 9, 13, 0.96);
   border-top: 1px solid rgba(255, 255, 255, 0.07);
-  overflow: hidden;
+  overflow: clip;
   color: #f1f5f9;
   box-sizing: border-box;
 }

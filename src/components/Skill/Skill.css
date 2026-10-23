@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   padding: 120px 6% 100px;
-  overflow: hidden;
+  overflow: clip;
   color: #f1f5f9;
   background: transparent;
   box-sizing: border-box;

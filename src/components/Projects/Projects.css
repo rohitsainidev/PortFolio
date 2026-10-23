@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   padding: 110px 0 90px;
-  overflow: hidden;
+  overflow: clip;
   color: #f1f5f9;
   background: transparent;
   box-sizing: border-box;
