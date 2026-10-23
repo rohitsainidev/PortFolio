@@ -19,16 +19,15 @@ export default function ProjectAccessModal({ project, isOpen, onClose, onLaunch 
   const modalRef = useRef(null);
   const nameInputRef = useRef(null);
 
-  // Focus input and completely freeze background scrolling (HTML, Body, Lenis, and Wheel/Touch)
+  // Focus input and freeze background scrolling
   useEffect(() => {
     if (isOpen) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
-      window.lenis?.stop();
       setStatus("idle");
       setErrorMsg("");
 
-      // Complete wheel & touch lock on background
+      // Wheel & touch lock on background
       const preventBackgroundScroll = (e) => {
         if (!modalRef.current || !modalRef.current.contains(e.target)) {
           e.preventDefault();
@@ -45,14 +44,12 @@ export default function ProjectAccessModal({ project, isOpen, onClose, onLaunch 
       return () => {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
-        window.lenis?.start();
         window.removeEventListener("wheel", preventBackgroundScroll);
         window.removeEventListener("touchmove", preventBackgroundScroll);
       };
     } else {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
-      window.lenis?.start();
       setStatus("idle");
       setErrorMsg("");
     }

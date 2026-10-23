@@ -43,18 +43,15 @@ function Navbar({ theme = "dark", toggleTheme }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll & sync Lenis when mobile drawer is open
+  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      window.lenis?.stop();
     } else {
       document.body.style.overflow = "";
-      window.lenis?.start();
     }
     return () => {
       document.body.style.overflow = "";
-      window.lenis?.start();
     };
   }, [mobileMenuOpen]);
 
@@ -113,7 +110,6 @@ function Navbar({ theme = "dark", toggleTheme }) {
         <nav
           className={`nav-links ${mobileMenuOpen ? "mobile-open" : ""}`}
           aria-label="Navigation Menu"
-          data-lenis-prevent
         >
           {/* Drawer Top Bar */}
           <div className="mobile-drawer-top">

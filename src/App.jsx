@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Lenis from "lenis";
-import "lenis/dist/lenis.css";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
@@ -28,40 +26,48 @@ function App() {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  // Lenis Luxury Smooth Scrolling & Reveal Observer (Desktop + Mobile Touch)
+  // Ultra-fast 100% Native Scrolling (like YouTube) + passive scroll progress
   useEffect(() => {
-    // 1. Initialize Lenis Smooth Scroll with Mobile Touch Support
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential ease
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.05,
-      syncTouch: true, // Enables buttery smooth scrolling on mobile & touch devices
-      syncTouchLerp: 0.08, // Smooth momentum interpolation for finger touch
-      touchMultiplier: 1.35, // Natural, responsive touch scroll speed
-      touchInertiaExponent: 1.6, // Soft momentum glide on finger release
-      infinite: false,
-    });
+    let ticking = false;
 
-    window.lenis = lenis;
-
-    // Directly update progress bar on animation frame without triggering React re-renders
-    lenis.on("scroll", ({ progress }) => {
+    const updateScrollProgress = () => {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       if (progressBarRef.current) {
-        progressBarRef.current.style.width = `${progress * 100}%`;
+        const progress =
+          scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+        progressBarRef.current.style.width = `${progress}%`;
       }
-    });
+      ticking = false;
+    };
 
-    let rafId;
-    function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    };
 
-    // 2. Global Scroll Reveal Observer with dynamic node support
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScrollProgress();
+
+    // 2. Smooth anchor navigation on menu click without affecting mouse wheel
+    const handleAnchorClick = (e) => {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (anchor) {
+        const targetId = anchor.getAttribute("href");
+        if (targetId && targetId !== "#") {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+    };
+    document.addEventListener("click", handleAnchorClick);
+
+    // Global Scroll Reveal Observer with dynamic node support
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -71,8 +77,8 @@ function App() {
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
@@ -85,26 +91,6 @@ function App() {
 
     observeAll();
 
-    // 3. Smooth anchor link scrolling with Lenis (Desktop + Mobile)
-    const handleAnchorClick = (e) => {
-      const anchor = e.target.closest('a[href^="#"]');
-      if (anchor) {
-        const targetId = anchor.getAttribute("href");
-        if (targetId && targetId !== "#") {
-          const targetEl = document.querySelector(targetId);
-          if (targetEl) {
-            e.preventDefault();
-            if (lenis.isStopped) {
-              lenis.start();
-            }
-            const offset = window.innerWidth <= 768 ? -70 : -80;
-            lenis.scrollTo(targetEl, { offset, duration: 1.15 });
-          }
-        }
-      }
-    };
-    document.addEventListener("click", handleAnchorClick);
-
     // MutationObserver to auto-observe dynamically mounted elements on tab clicks
     const mutationObserver = new MutationObserver(() => {
       observeAll();
@@ -116,12 +102,10 @@ function App() {
     });
 
     return () => {
-      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", handleAnchorClick);
       observer.disconnect();
       mutationObserver.disconnect();
-      lenis.destroy();
-      delete window.lenis;
     };
   }, []);
 
