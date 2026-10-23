@@ -14,7 +14,9 @@ html {
 }
 
 html, body {
-  overflow-x: clip;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 body {
