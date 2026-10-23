@@ -24,6 +24,7 @@ export default function ProjectAccessModal({ project, isOpen, onClose, onLaunch 
     if (isOpen) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
+      window.lenis?.stop();
       setStatus("idle");
       setErrorMsg("");
 
@@ -44,12 +45,14 @@ export default function ProjectAccessModal({ project, isOpen, onClose, onLaunch 
       return () => {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
+        window.lenis?.start();
         window.removeEventListener("wheel", preventBackgroundScroll);
         window.removeEventListener("touchmove", preventBackgroundScroll);
       };
     } else {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
+      window.lenis?.start();
       setStatus("idle");
       setErrorMsg("");
     }

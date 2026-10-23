@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
@@ -26,32 +28,57 @@ function App() {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  // Ultra-fast 100% Native Scrolling (like YouTube) + passive scroll progress
+  // Fast, Crisp & Snappy Portfolio Smooth Scrolling
   useEffect(() => {
-    let ticking = false;
+    const isTouchDevice =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
 
-    const updateScrollProgress = () => {
+    let lenis = null;
+    let rafId = null;
+
+    const handleNativeScroll = () => {
       const scrollableHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       if (progressBarRef.current) {
         const progress =
-          scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+          scrollableHeight > 0
+            ? (window.scrollY / scrollableHeight) * 100
+            : 0;
         progressBarRef.current.style.width = `${progress}%`;
       }
-      ticking = false;
     };
 
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollProgress);
-        ticking = true;
+    if (!isTouchDevice) {
+      // Desktop: Ultra-responsive modern lerp smooth scroll (snappy, fast, buttery)
+      lenis = new Lenis({
+        lerp: 0.12, // Instant velocity response, no sluggish fixed-duration delay
+        wheelMultiplier: 1.45, // Generous, fast distance per wheel flick
+        smoothWheel: true,
+        syncTouch: false, // NEVER hijack mobile/touch devices
+        infinite: false,
+      });
+      window.lenis = lenis;
+
+      lenis.on("scroll", ({ progress }) => {
+        if (progressBarRef.current) {
+          progressBarRef.current.style.width = `${progress * 100}%`;
+        }
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
       }
-    };
+      rafId = requestAnimationFrame(raf);
+    } else {
+      // Mobile / Touchscreen: 100% Native OS hardware-accelerated touch scroll
+      window.addEventListener("scroll", handleNativeScroll, { passive: true });
+      handleNativeScroll();
+    }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateScrollProgress();
-
-    // 2. Smooth anchor navigation on menu click without affecting mouse wheel
+    // Smooth anchor navigation for menu links
     const handleAnchorClick = (e) => {
       const anchor = e.target.closest('a[href^="#"]');
       if (anchor) {
@@ -60,7 +87,11 @@ function App() {
           const targetEl = document.querySelector(targetId);
           if (targetEl) {
             e.preventDefault();
-            targetEl.scrollIntoView({ behavior: "smooth" });
+            if (lenis) {
+              lenis.scrollTo(targetEl, { offset: -80, duration: 0.8 });
+            } else {
+              targetEl.scrollIntoView({ behavior: "smooth" });
+            }
           }
         }
       }
@@ -102,10 +133,15 @@ function App() {
     });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleNativeScroll);
       document.removeEventListener("click", handleAnchorClick);
       observer.disconnect();
       mutationObserver.disconnect();
+      if (lenis) {
+        lenis.destroy();
+        delete window.lenis;
+      }
     };
   }, []);
 
