@@ -30,35 +30,45 @@ function App() {
 
   // Fast, Crisp & Snappy Portfolio Smooth Scrolling
   useEffect(() => {
-    const isTouchDevice =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches;
+    const isMobileOrTouch =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth <= 820);
 
     let lenis = null;
     let rafId = null;
     let progressTicking = false;
     let nativeRafId = null;
 
+    let scrollableHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    const handleResize = () => {
+      scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize, { passive: true });
+
     const handleNativeScroll = () => {
       if (!progressTicking) {
         progressTicking = true;
         nativeRafId = requestAnimationFrame(() => {
-          const scrollableHeight =
-            document.documentElement.scrollHeight - window.innerHeight;
           if (progressBarRef.current) {
+            const currentScroll = window.scrollY || window.pageYOffset || 0;
             const progress =
               scrollableHeight > 0
-                ? (window.scrollY / scrollableHeight) * 100
+                ? Math.min(1, Math.max(0, currentScroll / scrollableHeight))
                 : 0;
-            progressBarRef.current.style.width = `${progress}%`;
+            progressBarRef.current.style.transform = `scaleX(${progress})`;
           }
           progressTicking = false;
         });
       }
     };
 
-    if (!isTouchDevice) {
+    if (!isMobileOrTouch) {
       // Desktop: Ultra-responsive modern lerp smooth scroll (snappy, fast, buttery)
       lenis = new Lenis({
         lerp: 0.12, // Instant velocity response, no sluggish fixed-duration delay
@@ -71,7 +81,7 @@ function App() {
 
       lenis.on("scroll", ({ progress }) => {
         if (progressBarRef.current) {
-          progressBarRef.current.style.width = `${progress * 100}%`;
+          progressBarRef.current.style.transform = `scaleX(${progress})`;
         }
       });
 
@@ -131,8 +141,28 @@ function App() {
     observeAll();
 
     // MutationObserver to auto-observe dynamically mounted elements on tab clicks
-    const mutationObserver = new MutationObserver(() => {
-      observeAll();
+    // Only re-scan if an actual element node matching reveal classes was added (ignores text mutations from TypingRole)
+    const mutationObserver = new MutationObserver((mutations) => {
+      let hasNewRevealElements = false;
+      for (const mutation of mutations) {
+        if (mutation.addedNodes.length > 0) {
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === 1) {
+              if (
+                node.matches?.(".reveal-up, .reveal-left, .reveal-right, .reveal-scale") ||
+                node.querySelector?.(".reveal-up, .reveal-left, .reveal-right, .reveal-scale")
+              ) {
+                hasNewRevealElements = true;
+                break;
+              }
+            }
+          }
+        }
+        if (hasNewRevealElements) break;
+      }
+      if (hasNewRevealElements) {
+        observeAll();
+      }
     });
 
     mutationObserver.observe(document.body, {
@@ -143,6 +173,7 @@ function App() {
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       if (nativeRafId) cancelAnimationFrame(nativeRafId);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleNativeScroll);
       document.removeEventListener("click", handleAnchorClick);
       observer.disconnect();

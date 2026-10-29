@@ -32,12 +32,19 @@ function Navbar({ theme = "dark", toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [showGithubModal, setShowGithubModal] = useState(false);
 
-  // Detect scroll for sticky navbar effect
+  // Detect scroll for sticky navbar effect with zero redundant re-renders
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 20;
+          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+          ticking = false;
+        });
+      }
     };
-    // Check on mount in case page is already scrolled
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);

@@ -197,6 +197,7 @@ function Home() {
                 className="morph-blob-img"
                 fetchPriority="high"
                 decoding="async"
+                draggable={false}
               />
               <div className="blob-lighting-overlay" />
             </div>
