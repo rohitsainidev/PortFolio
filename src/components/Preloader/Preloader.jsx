@@ -6,7 +6,7 @@ const CRITICAL_IMAGES = [
   "/tourup.png",
   "/zyrivo.png",
   "/shorturl.png",
-  "/tictactoe.png",
+  "/campus360.png",
   "/favicon.svg",
 ];
 

@@ -50,7 +50,7 @@ body {
 }
 
 #root {
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   position: relative;
 }
@@ -1437,12 +1437,38 @@ html[data-theme="light"] .footer-copyright strong {
    - 100% Native phone OS inertia (Zero JS lag / Zero drag)
    - Eliminates GPU rasterization bottlenecks during touch fling
    ───────────────────────────────────────────────────────── */
+html,
+body,
+#root,
+section {
+  touch-action: pan-y !important;
+}
+
 @media (max-width: 820px) {
   html,
   body {
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior-y: auto !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Make sure every image, illustration and decorative element passes touches straight to native scroll */
+  .home-image-wrapper,
+  .morph-blob-stage,
+  .morph-blob-inner,
+  .morph-blob-img,
+  .blob-contour-line,
+  .blob-ambient-glow,
+  .about-illustration-col,
+  .about-illustration-free,
+  .about-free-illustration,
+  .about-illustration-glow,
+  .contact-illustration-wrap,
+  .contact-mail-svg {
+    pointer-events: none !important;
+    touch-action: pan-y !important;
+    -webkit-user-drag: none !important;
+    user-select: none !important;
   }
 
   /* Optimize heavy GPU blur filters on mobile */
@@ -1455,7 +1481,7 @@ html[data-theme="light"] .footer-copyright strong {
   .contact-sec-glow-right,
   .exp-glow-1,
   .exp-glow-2 {
-    filter: blur(40px) !important;
+    filter: blur(25px) !important;
     pointer-events: none !important;
   }
 

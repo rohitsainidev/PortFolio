@@ -295,6 +295,8 @@
   -webkit-user-select: none;
   opacity: 1;
   transform: none;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
 }
 
 .home.show .home-image-wrapper {
@@ -310,7 +312,8 @@
   width: 440px;
   height: 440px;
   border-radius: 50%;
-  pointer-events: none;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
   background: radial-gradient(
     circle,
     rgba(6, 182, 212, 0.35) 0%,
@@ -343,22 +346,25 @@
   align-items: center;
   justify-content: center;
   animation: blobStageFloat 6s ease-in-out infinite;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none !important;
+  touch-action: pan-y !important;
+  transform: translateZ(0);
 }
 
 @keyframes blobStageFloat {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) translateZ(0);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-12px) translateZ(0);
   }
 }
 
 /* 1. Primary Glowing Cyan Contour Line (Exactly like screenshot!) */
 .blob-contour-line {
   position: absolute;
-  pointer-events: none;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
   z-index: 3;
 }
 
@@ -369,7 +375,9 @@
   filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.85)) drop-shadow(0 0 25px rgba(6, 182, 212, 0.5));
   animation: morphContourCyan 10s ease-in-out infinite;
   opacity: 0.95;
-  transition: filter 0.4s ease, opacity 0.4s ease;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
+  transform: translateZ(0);
 }
 
 /* 2. Secondary Purple Glow Contour Line */
@@ -380,11 +388,9 @@
   filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.6));
   animation: morphContourPurple 12s ease-in-out infinite reverse;
   opacity: 0.65;
-}
-
-.morph-blob-stage:hover .primary-cyan {
-  filter: drop-shadow(0 0 20px rgba(0, 242, 254, 1)) drop-shadow(0 0 40px rgba(6, 182, 212, 0.75));
-  opacity: 1;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
+  transform: translateZ(0);
 }
 
 /* 3. Inner Liquid Morphing Shape Holding Photo */
@@ -399,16 +405,12 @@
               inset 0 0 20px rgba(168, 85, 247, 0.15);
   overflow: hidden;
   animation: morphLiquidShape 8s ease-in-out infinite;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-}
-
-.morph-blob-stage:hover .morph-blob-inner {
-  transform: scale(1.03);
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.9),
-              inset 0 0 45px rgba(0, 242, 254, 0.3);
+  pointer-events: none !important;
+  touch-action: pan-y !important;
+  transform: translateZ(0);
 }
 
 /* 4. Rohit's Photo */
@@ -419,16 +421,12 @@
   object-position: bottom center;
   display: block;
   z-index: 2;
-  pointer-events: none;
+  pointer-events: none !important;
+  touch-action: pan-y !important;
   -webkit-user-drag: none;
   user-select: none;
   filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-}
-
-.morph-blob-stage:hover .morph-blob-img {
-  transform: scale(1.06);
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.6)) contrast(104%);
+  transform: translateZ(0);
 }
 
 /* Lighting Overlay */
@@ -576,6 +574,8 @@
   .home-image-wrapper {
     min-height: auto;
     margin-top: 20px;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   /* Fully Active Liquid Morphing Profile Stage on Mobile & All Devices */
@@ -585,55 +585,68 @@
     animation: blobStageFloat 6s ease-in-out infinite;
     transform: translateZ(0);
     will-change: transform;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   .blob-contour-line.primary-cyan {
     width: 295px;
     height: 335px;
     border: 2px solid #00f2fe;
-    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.85));
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.85);
+    filter: none !important;
     animation: morphContourCyan 10s ease-in-out infinite;
     transform: translateZ(0);
     will-change: transform, border-radius;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   .blob-contour-line.secondary-purple {
     width: 305px;
     height: 345px;
     border: 1.5px solid rgba(168, 85, 247, 0.65);
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+    filter: none !important;
     animation: morphContourPurple 12s ease-in-out infinite reverse;
     transform: translateZ(0);
     will-change: transform, border-radius;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   .morph-blob-inner {
     width: 270px;
     height: 310px;
     animation: morphLiquidShape 8s ease-in-out infinite;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7),
-                inset 0 0 25px rgba(6, 182, 212, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
     transform: translateZ(0);
     will-change: border-radius;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   .blob-ambient-glow {
     display: block;
-    width: 300px;
-    height: 300px;
-    filter: blur(35px);
-    animation: blobAuraPulse 7s ease-in-out infinite alternate;
+    width: 260px;
+    height: 260px;
+    filter: blur(25px);
+    animation: none !important;
+    pointer-events: none !important;
+    touch-action: pan-y !important;
   }
 
   .blob-lighting-overlay {
     display: block;
+    pointer-events: none !important;
   }
 
   .home-ambient-glow {
     display: block;
-    filter: blur(35px);
-    width: 220px;
-    height: 220px;
+    filter: blur(25px);
+    width: 200px;
+    height: 200px;
+    pointer-events: none !important;
   }
 }
 
