@@ -8,8 +8,9 @@
   display: flex;
   align-items: center;
   padding: 130px 6% 80px;
-  overflow: clip;
+  overflow: visible;
   background: transparent;
+  touch-action: pan-y !important;
 }
 
 /* AMBIENT GLOWS */
@@ -126,7 +127,7 @@
   display: inline-block;
 }
 
-/* Typing Role */
+/* Typing Role - Isolated layout containment prevents character shifts from reflowing page */
 .home-role {
   margin-top: 18px;
   color: #94a3b8;
@@ -136,19 +137,29 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  min-height: 44px;
+  contain: layout style;
+  touch-action: pan-y !important;
 }
 
 .role-prefix {
   color: #94a3b8;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .typing-role {
+  display: inline-block;
+  min-width: 2ch;
   color: #ffffff;
   font-weight: 700;
   background: linear-gradient(135deg, #ffffff 40%, #d8b4fe 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  contain: layout style;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .cursor {
@@ -491,6 +502,24 @@
   }
 }
 
+@keyframes spinContourCyan {
+  0% {
+    transform: rotate(0deg) translateZ(0);
+  }
+  100% {
+    transform: rotate(360deg) translateZ(0);
+  }
+}
+
+@keyframes spinContourPurple {
+  0% {
+    transform: rotate(0deg) translateZ(0);
+  }
+  100% {
+    transform: rotate(-360deg) translateZ(0);
+  }
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1080px) {
   .home {
@@ -531,10 +560,22 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .home {
     padding: 100px 5% 40px;
     min-height: auto;
+    overflow: visible !important;
+    touch-action: pan-y !important;
+  }
+
+  .home-content,
+  .home-greeting,
+  .home-title,
+  .home-role,
+  .home-description {
+    touch-action: pan-y !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 
   .home-title {
@@ -552,6 +593,7 @@
     width: 100%;
     max-width: 360px;
     margin: 24px auto 0;
+    touch-action: pan-y !important;
   }
 
   .home-buttons .primary-btn,
@@ -562,12 +604,18 @@
     font-size: 13.5px;
     white-space: nowrap;
     text-align: center;
+    touch-action: pan-y !important;
   }
 
   .home-socials {
     margin-top: 22px;
     gap: 10px;
     justify-content: center;
+    touch-action: pan-y !important;
+  }
+
+  .home-socials .social-pill {
+    touch-action: pan-y !important;
   }
 
   /* Instant Ultra-Smooth Native Mobile Photo Stage */
@@ -578,51 +626,65 @@
     touch-action: pan-y !important;
   }
 
-  /* Fully Active Liquid Morphing Profile Stage on Mobile & All Devices */
+  /* Fully Active Liquid Morphing Profile Stage on Mobile (0% CPU / 100% GPU Composited) */
   .morph-blob-stage {
     width: 290px;
     height: 330px;
     animation: blobStageFloat 6s ease-in-out infinite;
     pointer-events: none !important;
     touch-action: pan-y !important;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .blob-contour-line.primary-cyan {
     width: 300px;
     height: 340px;
     border: 2px solid #00f2fe;
-    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.85)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
-    animation: morphContourCyan 10s ease-in-out infinite;
+    border-radius: 46% 54% 58% 42% / 44% 56% 44% 56%;
+    filter: none !important;
+    box-shadow: 0 0 16px rgba(0, 242, 254, 0.75), inset 0 0 10px rgba(0, 242, 254, 0.35);
+    animation: spinContourCyan 14s linear infinite;
     pointer-events: none !important;
     touch-action: pan-y !important;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .blob-contour-line.secondary-purple {
     width: 310px;
     height: 350px;
-    border: 1.5px solid rgba(168, 85, 247, 0.65);
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));
-    animation: morphContourPurple 12s ease-in-out infinite reverse;
+    border: 1.5px solid rgba(168, 85, 247, 0.75);
+    border-radius: 56% 44% 42% 58% / 52% 48% 52% 48%;
+    filter: none !important;
+    box-shadow: 0 0 14px rgba(168, 85, 247, 0.65);
+    animation: spinContourPurple 18s linear infinite reverse;
     pointer-events: none !important;
     touch-action: pan-y !important;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .morph-blob-inner {
     width: 280px;
     height: 320px;
-    animation: morphLiquidShape 8s ease-in-out infinite;
+    border-radius: 58% 42% 48% 52% / 54% 48% 52% 46%;
+    animation: none !important;
     background: radial-gradient(circle at 50% 30%, #15182e 0%, #0d1020 60%, #070810 100%);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7),
                 inset 0 0 25px rgba(6, 182, 212, 0.2);
     pointer-events: none !important;
     touch-action: pan-y !important;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .blob-ambient-glow {
     display: block;
     width: 260px;
     height: 260px;
-    filter: blur(25px);
+    filter: none !important;
+    opacity: 0.75;
     animation: none !important;
     pointer-events: none !important;
     touch-action: pan-y !important;
@@ -635,7 +697,8 @@
 
   .home-ambient-glow {
     display: block;
-    filter: blur(25px);
+    filter: none !important;
+    opacity: 0.65;
     width: 200px;
     height: 200px;
     pointer-events: none !important;

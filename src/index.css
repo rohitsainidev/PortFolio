@@ -11,13 +11,18 @@ html {
   background-color: #08090d;
   scroll-padding-top: 80px;
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: auto;
-  overflow-x: clip;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
   background:
     radial-gradient(
       circle at 80% 10%,
@@ -37,7 +42,8 @@ body {
 }
 
 #root {
-  overflow-x: clip;
+  overflow-x: hidden;
+  max-width: 100%;
   width: 100%;
   position: relative;
 }
@@ -1430,7 +1436,14 @@ html[data-theme="light"] .footer-copyright strong {
 html,
 body,
 #root,
-section {
+section,
+.home,
+.home-container,
+.home-content,
+.home-title,
+.home-greeting,
+.home-role,
+.home-description {
   touch-action: pan-y !important;
 }
 
@@ -1440,6 +1453,38 @@ section {
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior-y: auto !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Prevent sections from clipping touches or trapping momentum scrolling */
+  section,
+  .home,
+  .about,
+  .skills-sec,
+  .projects-sec,
+  .experience-sec,
+  .contact-sec {
+    overflow: visible !important;
+  }
+
+  /* Instant touch-scroll response everywhere on the Home section */
+  .home,
+  .home-container,
+  .home-content,
+  .home-buttons,
+  .home-buttons a,
+  .home-socials,
+  .home-socials button,
+  .home-socials a {
+    touch-action: pan-y !important;
+  }
+
+  .home-greeting,
+  .home-title,
+  .home-role,
+  .home-description {
+    touch-action: pan-y !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 
   /* Make sure every image, illustration and decorative element passes touches straight to native scroll */
@@ -1461,8 +1506,9 @@ section {
     user-select: none !important;
   }
 
-  /* Optimize heavy GPU blur filters on mobile */
+  /* Eliminate heavy GPU blur filters on mobile — gradients provide natural soft glow */
   .about-ambient-glow,
+  .about-glow-orb,
   .skills-sec-glow-left,
   .skills-sec-glow-right,
   .projects-sec-glow-left,
@@ -1470,9 +1516,24 @@ section {
   .contact-sec-glow-left,
   .contact-sec-glow-right,
   .exp-glow-1,
-  .exp-glow-2 {
-    filter: blur(25px) !important;
+  .exp-glow-2,
+  .home-ambient-glow,
+  .glow-top-left,
+  .glow-bottom-right,
+  .blob-ambient-glow {
+    filter: none !important;
     pointer-events: none !important;
+  }
+
+  /* Hardware-accelerated contour line glow in Light Mode on mobile (0 CPU filter drag) */
+  html[data-theme="light"] .blob-contour-line.primary-cyan {
+    filter: none !important;
+    box-shadow: 0 0 16px rgba(2, 132, 199, 0.65), inset 0 0 10px rgba(14, 165, 233, 0.25) !important;
+  }
+
+  html[data-theme="light"] .blob-contour-line.secondary-purple {
+    filter: none !important;
+    box-shadow: 0 0 14px rgba(124, 58, 237, 0.55) !important;
   }
 
   /* Eliminate heavy backdrop-filter passes during mobile scrolling */
