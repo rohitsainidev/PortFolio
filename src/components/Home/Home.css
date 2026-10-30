@@ -50,19 +50,17 @@
   gap: 60px;
 }
 
-/* LEFT CONTENT */
+/* LEFT CONTENT - INSTANTLY VISIBLE (ZERO DELAY) */
 .home-content {
   position: relative;
   z-index: 2;
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transform: none;
 }
 
 .home.show .home-content {
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
 }
 
 /* Status Badge */
@@ -286,7 +284,7 @@
   color: #c084fc;
 }
 
-/* RIGHT PHOTO & FLOATING BADGES */
+/* RIGHT PHOTO & FLOATING BADGES - INSTANTLY VISIBLE (ZERO DELAY) */
 .home-image-wrapper {
   position: relative;
   display: flex;
@@ -295,15 +293,13 @@
   min-height: 480px;
   user-select: none;
   -webkit-user-select: none;
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  opacity: 1;
+  transform: none;
 }
 
 .home.show .home-image-wrapper {
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
 }
 
 /* LIQUID MORPHING BLOB WITH NEON CONTOUR OUTLINE - (100% RECREATION OF USER'S INSPIRATION SCREENSHOT) */
@@ -582,47 +578,62 @@
     margin-top: 20px;
   }
 
+  /* Fully Active Liquid Morphing Profile Stage on Mobile & All Devices */
   .morph-blob-stage {
-    width: 270px;
-    height: 310px;
-    animation: none;
-    transform: none;
-    will-change: auto;
+    width: 285px;
+    height: 325px;
+    animation: blobStageFloat 6s ease-in-out infinite;
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .blob-contour-line.primary-cyan {
-    width: 280px;
-    height: 320px;
-    animation: none;
-    border-radius: 42% 58% 55% 45% / 45% 40% 60% 55%;
-    border-width: 2px;
-    filter: none;
-    box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    width: 295px;
+    height: 335px;
+    border: 2px solid #00f2fe;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.85));
+    animation: morphContourCyan 10s ease-in-out infinite;
+    transform: translateZ(0);
+    will-change: transform, border-radius;
   }
 
   .blob-contour-line.secondary-purple {
-    width: 290px;
-    height: 330px;
-    animation: none;
-    border-radius: 55% 45% 42% 58% / 50% 55% 45% 50%;
-    border-width: 1.5px;
-    filter: none;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+    width: 305px;
+    height: 345px;
+    border: 1.5px solid rgba(168, 85, 247, 0.65);
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+    animation: morphContourPurple 12s ease-in-out infinite reverse;
+    transform: translateZ(0);
+    will-change: transform, border-radius;
   }
 
   .morph-blob-inner {
-    width: 260px;
-    height: 300px;
-    animation: none;
-    border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    width: 270px;
+    height: 310px;
+    animation: morphLiquidShape 8s ease-in-out infinite;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7),
+                inset 0 0 25px rgba(6, 182, 212, 0.2);
+    transform: translateZ(0);
+    will-change: border-radius;
   }
 
-  /* Zero GPU blur passes during mobile scrolling */
-  .home-ambient-glow,
-  .blob-ambient-glow,
+  .blob-ambient-glow {
+    display: block;
+    width: 300px;
+    height: 300px;
+    filter: blur(35px);
+    animation: blobAuraPulse 7s ease-in-out infinite alternate;
+  }
+
   .blob-lighting-overlay {
-    display: none;
+    display: block;
+  }
+
+  .home-ambient-glow {
+    display: block;
+    filter: blur(35px);
+    width: 220px;
+    height: 220px;
   }
 }
 

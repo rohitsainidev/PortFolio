@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  cursor: pointer;
+  cursor: default;
   perspective: 1200px;
 }
 
@@ -48,9 +48,6 @@
   overflow: visible;
   filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.32));
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
-}
-.contact-illustration-wrap:hover .contact-mail-svg {
-  transform: translateY(-6px) scale(1.02);
 }
 
 /* ──────────────────────────────────────────────
@@ -160,11 +157,6 @@
 .letter-card        { fill: #ffffff; }
 .letter-line-header { fill: #cad7e8; }
 .letter-line        { fill: #e2ebf5; }
-
-/* Interactive subtle lift on hover */
-.contact-illustration-wrap:hover .illustration-letter {
-  transform: translateY(-14px);
-}
 
 @keyframes letterPhysicsCycle {
   /* 0% – 36%: HERO STATE — Letter proudly visible in open envelope */
@@ -304,9 +296,6 @@
   from { transform: translateY( 0px) rotate( 0deg); }
   to   { transform: translateY(-5px) rotate( 3deg); }
 }
-.contact-illustration-wrap:hover .illustration-at-badge {
-  transform: scale(1.12) rotate(-8deg);
-}
 
 /* ──────────────────────────────────────────────
    ID CARD
@@ -326,9 +315,6 @@
 @keyframes cardFloat {
   from { transform: translateY( 0px) rotate( 0.0deg); }
   to   { transform: translateY(-6px) rotate(-1.8deg); }
-}
-.contact-illustration-wrap:hover .illustration-id-card {
-  transform: scale(1.07) translateY(-5px);
 }
 
 /* ──────────────────────────────────────────────
@@ -406,11 +392,6 @@
 .plane-fold-top  { fill: #f1f5fa; }
 .plane-spine     { stroke: #7e95ad; stroke-width: 1.4; }
 .plane-highlight { stroke: #ffffff; stroke-width: 1.1; }
-
-/* Speed up on hover */
-.contact-illustration-wrap:hover .illustration-plane-rig {
-  animation-duration: 2.8s;
-}
 
 /* ──────────────────────────────────────────────
    MISC

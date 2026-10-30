@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import {
   FaPaperPlane,
   FaCheck,
@@ -7,9 +7,6 @@ import ContactIllustration from "./ContactIllustration";
 import "./Contact.css";
 
 function Contact() {
-  const contactRef = useRef(null);
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-
   // Form State
   const [formData, setFormData] = useState({
     name: "",
@@ -23,28 +20,6 @@ function Contact() {
   const [submitError, setSubmitError] = useState("");
 
   const recipientEmail = "rohitsaini123du@gmail.com";
-
-  // Section Observer
-  useEffect(() => {
-    const section = contactRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsSectionVisible(true);
-          observer.unobserve(section);
-        }
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -30px 0px",
-      }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   // Handle Input Changes
   const handleChange = (e) => {
@@ -96,13 +71,7 @@ function Contact() {
   };
 
   return (
-    <section
-      className={`contact-sec-container ${
-        isSectionVisible ? "contact-sec-visible" : ""
-      }`}
-      id="contact"
-      ref={contactRef}
-    >
+    <section className="contact-sec-container contact-sec-visible" id="contact">
       {/* Background Ambient Glows */}
       <div className="contact-sec-glow-left" aria-hidden="true" />
       <div className="contact-sec-glow-right" aria-hidden="true" />

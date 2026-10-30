@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   FaLightbulb,
   FaCompass,
@@ -86,32 +86,6 @@ function About() {
       accent: "cyan",
     },
   ];
-
-  /* Scroll reveal observer */
-  useEffect(() => {
-    const section = aboutRef.current;
-    if (!section) return;
-
-    const revealItems = section.querySelectorAll(".about-reveal-item");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  }, []);
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);

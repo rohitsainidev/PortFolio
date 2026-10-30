@@ -12,6 +12,23 @@ html {
   scroll-padding-top: 80px;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   background:
@@ -64,46 +81,23 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* CREATIVE SCROLL REVEAL SYSTEM */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-35px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(35px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
+/* ALL CONTENT IMMEDIATELY VISIBLE - NO SCROLL HIDING OR DELAY */
+.reveal-up,
+.reveal-left,
+.reveal-right,
 .reveal-scale {
-  opacity: 0;
-  transform: scale(0.92) translateY(20px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
 }
 
-/* Revealed State */
 .reveal-up.is-revealed,
 .reveal-left.is-revealed,
 .reveal-right.is-revealed,
 .reveal-scale.is-revealed {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Stagger Delays */
@@ -941,21 +935,6 @@ html[data-theme="light"] .skills-theme-devops .skills-sec-card-icon {
   filter: drop-shadow(0 4px 12px rgba(219, 39, 119, 0.4)) !important;
 }
 
-html[data-theme="light"] .skills-theme-frontend:hover .skills-sec-card-icon {
-  color: #6d28d9 !important;
-  filter: drop-shadow(0 8px 22px rgba(124, 58, 237, 0.65)) !important;
-}
-
-html[data-theme="light"] .skills-theme-backend:hover .skills-sec-card-icon {
-  color: #0369a1 !important;
-  filter: drop-shadow(0 8px 22px rgba(2, 132, 199, 0.65)) !important;
-}
-
-html[data-theme="light"] .skills-theme-devops:hover .skills-sec-card-icon {
-  color: #be185d !important;
-  filter: drop-shadow(0 8px 22px rgba(219, 39, 119, 0.65)) !important;
-}
-
 html[data-theme="light"] .skills-sec-card-heading h3 {
   color: #0f172a;
 }
@@ -973,12 +952,6 @@ html[data-theme="light"] .skills-sec-item {
   border-color: transparent;
 }
 
-html[data-theme="light"] .skills-sec-item:hover {
-  background: #ffffff;
-  border-color: rgba(168, 85, 247, 0.25);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-}
-
 html[data-theme="light"] .skills-sec-tech-text strong {
   color: #0f172a;
 }
@@ -989,10 +962,6 @@ html[data-theme="light"] .skills-sec-tech-text small {
 
 html[data-theme="light"] .skills-sec-percent {
   color: #475569;
-}
-
-html[data-theme="light"] .skills-sec-item:hover .skills-sec-percent {
-  color: #0f172a;
 }
 
 html[data-theme="light"] .skills-sec-progress-track {

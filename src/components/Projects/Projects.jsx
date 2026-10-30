@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import {
   FaGithub,
   FaArrowUpRightFromSquare,
@@ -10,39 +10,12 @@ import {
   SiExpress,
   SiMongodb,
   SiVite,
-  SiJavascript,
-  SiHtml5,
-  SiCss,
 } from "react-icons/si";
 import "./Projects.css";
 import ProjectAccessModal from "./ProjectAccessModal";
 
 function Projects() {
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
   const [activeModalProject, setActiveModalProject] = useState(null);
-  const sectionRef = useRef(null);
-
-  // Section Observer for scroll reveal
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsSectionVisible(true);
-          observer.unobserve(section);
-        }
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -30px 0px",
-      }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   // 3 Featured Projects
   const projectsData = [
@@ -98,19 +71,20 @@ function Projects() {
     },
     {
       id: 4,
-      title: "Tic Tac Toe",
-      category: "Interactive Web Game",
-      image: "/tictactoe.png",
+      title: "Campus360",
+      category: "Campus ERP Platform",
+      image: "/campus360.png",
       description:
-        "Interactive neon-styled web game featuring 2-player local match, smart bot opponent, custom sound effects, and live score tracking.",
+        "All-in-one unified ERP platform for colleges and universities to streamline student attendance, online fee payments, examinations, assignments, and campus administration.",
       techStack: [
-        { name: "JavaScript", icon: <SiJavascript className="tech-icon-js" /> },
-        { name: "HTML5", icon: <SiHtml5 className="tech-icon-html" /> },
-        { name: "CSS3", icon: <SiCss className="tech-icon-css3" /> },
-        { name: "Web Audio", icon: <FaCode className="tech-icon-api" /> },
+        { name: "React", icon: <SiReact className="tech-icon-react" /> },
+        { name: "Tailwind", icon: <SiTailwindcss className="tech-icon-tailwind" /> },
+        { name: "Node.js", icon: <FaCode className="tech-icon-node" /> },
+        { name: "MongoDB", icon: <SiMongodb className="tech-icon-mongo" /> },
+        { name: "Express", icon: <SiExpress className="tech-icon-express" /> },
       ],
-      liveUrl: "https://tictactoe-webb.vercel.app/",
-      githubUrl: "https://github.com/rohitsainidev/tictactoe-web",
+      liveUrl: "https://campus360-manage.vercel.app/",
+      githubUrl: "https://github.com/rohitsainidev/campus360",
     },
   ];
 
@@ -200,13 +174,7 @@ function Projects() {
   );
 
   return (
-    <section
-      className={`projects-sec-container ${
-        isSectionVisible ? "projects-sec-visible" : ""
-      }`}
-      id="projects"
-      ref={sectionRef}
-    >
+    <section className="projects-sec-container projects-sec-visible" id="projects">
       {/* Background Ambient Glows */}
       <div className="projects-sec-glow-left" aria-hidden="true" />
       <div className="projects-sec-glow-right" aria-hidden="true" />
@@ -214,7 +182,7 @@ function Projects() {
       <div className="projects-inner-wrapper">
         {/* Header */}
         <div className="projects-sec-header reveal-up">
-          <span className="projects-sec-badge">PORTFOLIO</span>
+          <span className="projects-sec-badge">PROJECTS</span>
           <h2 className="projects-sec-title">
             Featured <span className="gradient-text">Projects</span>
           </h2>

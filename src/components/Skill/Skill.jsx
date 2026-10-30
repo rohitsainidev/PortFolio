@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import {
   FaCode,
   FaServer,
@@ -47,30 +46,6 @@ const OpenAIIcon = () => (
 );
 
 function Skills() {
-  const skillsRef = useRef(null);
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-
-  useEffect(() => {
-    const section = skillsRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsSectionVisible(true);
-          observer.unobserve(section);
-        }
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -30px 0px",
-      }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   const skillCategories = [
     {
       id: "frontend",
@@ -122,11 +97,7 @@ function Skills() {
   ];
 
   return (
-    <section
-      className={`skills-sec-container ${isSectionVisible ? "skills-sec-visible" : ""}`}
-      id="skills"
-      ref={skillsRef}
-    >
+    <section className="skills-sec-container skills-sec-visible" id="skills">
       {/* Background Ambient Glows */}
       <div className="skills-sec-glow-left" aria-hidden="true" />
       <div className="skills-sec-glow-right" aria-hidden="true" />

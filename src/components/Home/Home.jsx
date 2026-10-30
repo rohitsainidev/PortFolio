@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -63,30 +63,10 @@ function TypingRole() {
 }
 
 function Home() {
-  const homeRef = useRef(null);
   const [accessModalTarget, setAccessModalTarget] = useState(null);
 
-  // Reveal observer
-  useEffect(() => {
-    const section = homeRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          section.classList.add("show");
-          observer.unobserve(section);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section className="home" id="home" ref={homeRef}>
+    <section className="home show" id="home">
       {/* Background Ambient Glows */}
       <div className="home-ambient-glow glow-top-left" />
       <div className="home-ambient-glow glow-bottom-right" />

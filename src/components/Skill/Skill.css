@@ -49,21 +49,20 @@
   margin: 0 auto;
 }
 
-/* HEADER */
+/* HEADER - INSTANTLY VISIBLE */
 .skills-sec-header {
   position: relative;
   z-index: 2;
   max-width: 780px;
   margin: 0 auto 45px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  opacity: 1;
+  transform: none;
 }
 
 .skills-sec-visible .skills-sec-header {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .skills-sec-badge {
@@ -144,13 +143,7 @@
   font-size: 26px;
   color: var(--card-accent, #a855f7);
   transform-origin: center center;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
   filter: drop-shadow(0 4px 12px var(--card-accent, rgba(168, 85, 247, 0.45)));
-}
-
-.skills-sec-card:hover .skills-sec-card-icon {
-  transform: translateY(-3px) scale(1.15);
-  filter: drop-shadow(0 8px 20px var(--card-accent, rgba(168, 85, 247, 0.85)));
 }
 
 .skills-sec-card-heading {
@@ -225,14 +218,7 @@
   border-radius: 10px;
   background: transparent;
   border: 1px solid transparent;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
-}
-
-/* Soft, subtle highlight on hover */
-.skills-chip-item:hover {
-  background: rgba(255, 255, 255, 0.045);
-  transform: translateX(3px);
 }
 
 /* Brand Icon - Clean & natural without box background */
@@ -252,13 +238,7 @@
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  transition: transform 0.25s ease, filter 0.25s ease;
   filter: drop-shadow(0 2px 6px color-mix(in srgb, var(--chip-color, currentColor) 35%, transparent));
-}
-
-.skills-chip-item:hover .skills-chip-icon {
-  transform: scale(1.15);
-  filter: drop-shadow(0 0 10px var(--chip-color, currentColor));
 }
 
 /* Chip Body */
@@ -444,10 +424,6 @@ html[data-theme="light"] .skills-sec-divider {
 html[data-theme="light"] .skills-chip-item {
   background: transparent;
   border: 1px solid transparent;
-}
-
-html[data-theme="light"] .skills-chip-item:hover {
-  background: rgba(15, 23, 42, 0.035);
 }
 
 html[data-theme="light"] .skills-chip-icon-box {
