@@ -537,14 +537,15 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .home {
-    padding: 110px 4% 50px;
+    padding: 100px 5% 40px;
+    min-height: auto;
   }
 
   .home-title {
-    font-size: 42px;
-    letter-spacing: -1.5px;
+    font-size: 38px;
+    letter-spacing: -1.2px;
   }
 
   /* Side-by-side balanced dual CTA buttons on mobile */
@@ -556,7 +557,7 @@
     gap: 12px;
     width: 100%;
     max-width: 360px;
-    margin: 28px auto 0;
+    margin: 24px auto 0;
   }
 
   .home-buttons .primary-btn,
@@ -570,52 +571,58 @@
   }
 
   .home-socials {
-    margin-top: 26px;
+    margin-top: 22px;
     gap: 10px;
     justify-content: center;
   }
 
+  /* Instant Ultra-Smooth Native Mobile Photo Stage */
+  .home-image-wrapper {
+    min-height: auto;
+    margin-top: 20px;
+  }
+
   .morph-blob-stage {
-    width: 290px;
-    height: 330px;
-    animation: blobStageFloat 6s ease-in-out infinite;
+    width: 270px;
+    height: 310px;
+    animation: none;
+    transform: none;
+    will-change: auto;
   }
 
   .blob-contour-line.primary-cyan {
-    width: 300px;
-    height: 340px;
-    animation: none;
-    border-radius: 42% 58% 55% 45% / 45% 40% 60% 55%;
-    filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
-  }
-
-  .blob-contour-line.secondary-purple {
-    width: 310px;
-    height: 350px;
-    animation: none;
-    border-radius: 55% 45% 42% 58% / 50% 55% 45% 50%;
-    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.6));
-  }
-
-  .morph-blob-inner {
     width: 280px;
     height: 320px;
     animation: none;
-    border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 42% 58% 55% 45% / 45% 40% 60% 55%;
+    border-width: 2px;
+    filter: none;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
   }
 
-  .home-ambient-glow {
-    filter: blur(20px);
-    width: 220px;
-    height: 220px;
-  }
-
-  .blob-ambient-glow {
+  .blob-contour-line.secondary-purple {
+    width: 290px;
+    height: 330px;
     animation: none;
-    filter: blur(20px);
+    border-radius: 55% 45% 42% 58% / 50% 55% 45% 50%;
+    border-width: 1.5px;
+    filter: none;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+  }
+
+  .morph-blob-inner {
     width: 260px;
-    height: 260px;
+    height: 300px;
+    animation: none;
+    border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Zero GPU blur passes during mobile scrolling */
+  .home-ambient-glow,
+  .blob-ambient-glow,
+  .blob-lighting-overlay {
+    display: none;
   }
 }
 

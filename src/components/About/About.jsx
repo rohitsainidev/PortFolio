@@ -99,6 +99,7 @@ function About() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
           }
         });
       },
