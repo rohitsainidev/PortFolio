@@ -27,30 +27,39 @@ function App() {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  // Ultra-Fast High-Performance Smooth Scrolling (Mobile Touch + Desktop)
+  // Ultra-Fast High-Performance Scrolling: Native 120Hz Hardware Momentum on Mobile, Lenis on Desktop
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 0.65, // Brisk & snappy completion, no sluggish drag
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Snappy exponential curve
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 2.2, // Ultra-fast desktop scroll distance per wheel flick
-      syncTouch: true, // Enables ultra-fast acceleration on mobile & touchscreens
-      syncTouchLerp: 0.16, // Instant touch velocity response, zero lag behind finger
-      touchMultiplier: 2.5, // Ultra-fast mobile touch swipe glide (2.5x distance)
-      touchInertiaExponent: 1.25, // Powerful, smooth glide on finger release
-      infinite: false,
-    });
+    // Detect mobile touch devices (smartphones, tablets)
+    const isMobileDevice =
+      typeof window !== "undefined" &&
+      (window.innerWidth <= 820 ||
+        /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) ||
+        (window.matchMedia && window.matchMedia("(pointer: coarse)").matches));
 
-    window.lenis = lenis;
+    let lenis = null;
+    let rafId = null;
 
-    let rafId;
-    function raf(time) {
-      lenis.raf(time);
+    if (!isMobileDevice) {
+      // Desktop: Ultra-fast responsive smooth wheel scrolling
+      lenis = new Lenis({
+        duration: 0.7,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 2.0,
+        syncTouch: false,
+        infinite: false,
+      });
+
+      window.lenis = lenis;
+
+      function raf(time) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
       rafId = requestAnimationFrame(raf);
     }
-    rafId = requestAnimationFrame(raf);
 
     // Ultra-Fast Smooth Anchor Navigation for menu links
     const handleAnchorClick = (e) => {
@@ -61,11 +70,17 @@ function App() {
           const targetEl = document.querySelector(targetId);
           if (targetEl) {
             e.preventDefault();
-            if (lenis.isStopped) {
-              lenis.start();
-            }
             const offset = window.innerWidth <= 768 ? -70 : -80;
-            lenis.scrollTo(targetEl, { offset, duration: 0.65 });
+            if (lenis && !lenis.isStopped) {
+              lenis.scrollTo(targetEl, { offset, duration: 0.65 });
+            } else {
+              const elementPosition = targetEl.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset + offset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+              });
+            }
           }
         }
       }
@@ -73,10 +88,12 @@ function App() {
     document.addEventListener("click", handleAnchorClick);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
-      lenis.destroy();
-      delete window.lenis;
+      if (lenis) {
+        lenis.destroy();
+        delete window.lenis;
+      }
     };
   }, []);
 
